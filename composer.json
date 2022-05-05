@@ -1,0 +1,5 @@
+{
+    "require": {
+        "slince/shopify-api-php": "^3.1"
+    }
+}
