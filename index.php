@@ -13,5 +13,5 @@ $client = new Slince\Shopify\Client('testmagicexhalation.myshopify.com', $creden
 ]);
 $product = $client->getProductManager()->findALL();
 print_r($product);
-//echo $client->getProductManager()->count();
+echo $client->getProductManager()->count();
 ?>
