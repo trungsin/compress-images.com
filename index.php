@@ -13,6 +13,7 @@ $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
     'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
 ]);
 $products = $client->getProductManager()->findALL();
+
 //print_r($product);
 $pagination = $client->getProductManager()->paginate([
     // // filter your product
@@ -36,7 +37,7 @@ while ($pagination->hasNext()) {
     echo ($i++)."----------<br>";
     $products = $pagination->next();
 }
-//echo $client->getProductManager()->count();
+echo $client->getProductManager()->count();
 $productCount =$client->getProductManager()->count();
 
 
