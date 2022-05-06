@@ -35,7 +35,7 @@ while ($pagination->hasNext()) {
         foreach($images as $image){
            // echo $image->getSrc()."<br>";
             $url = $image->getSrc();
-            $img = './originalfiles/';
+            $img = './node/originalfiles/';
             $filename = substr(basename($url),0,strpos(basename($url),"?v="));
             echo $filename;
             file_put_contents($img.$filename, file_get_contents($url));
