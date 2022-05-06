@@ -11,4 +11,7 @@ $credential = new Slince\Shopify\PrivateAppCredential('6a6af91b3f4ad4b566e07198f
 $client = new Slince\Shopify\Client('testmagicexhalation.myshopify.com', $credential, [
     'meta_cache_dir' => './tmp' // Metadata cache dir, required
 ]);
+$product = $client->getProductManager()->findALL();
+print_r($product);
+echo $client->getProductManager()->count();
 ?>
