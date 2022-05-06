@@ -34,7 +34,7 @@ while ($pagination->hasNext()) {
      
      }
     echo ($i++)."----------<br>";
-    $pagination->next();
+    $pagination = $pagination->next();
 }
 //echo $client->getProductManager()->count();
 $productCount =$client->getProductManager()->count();
