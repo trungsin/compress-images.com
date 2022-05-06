@@ -32,7 +32,7 @@ $pagination = $client->getProductManager()->paginate([
 //echo $client->getProductManager()->count();
 $productCount =$client->getProductManager()->count();
 foreach($products as $product){
-    print_r($product);
+    echo $product->id;
     echo "----<br>";
 
 }
