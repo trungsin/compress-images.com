@@ -12,7 +12,7 @@ $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV
 $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
     'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
 ]);
-$product = $client->getProductManager()->findALL();
+$products = $client->getProductManager()->findALL();
 //print_r($product);
 $pagination = $client->getProductManager()->paginate([
     // // filter your product
@@ -23,12 +23,19 @@ $pagination = $client->getProductManager()->paginate([
 
 //$currentProducts = $pagination->current(); //current page
 //print_r($pagination);
-while ($pagination->hasNext()) {
-    $currentProducts = $pagination->current();
-    print_r($currentProducts);
+// while ($pagination->hasNext()) {
+//     $currentProducts = $pagination->current();
+//     print_r($currentProducts);
+//     echo "----<br>";
+//     $nextProducts = $pagination->next();
+// }
+//echo $client->getProductManager()->count();
+$productCount =$client->getProductManager()->count();
+foreach($products as $product){
+    print_r($product);
     echo "----<br>";
-    $nextProducts = $pagination->next();
+
 }
-echo $client->getProductManager()->count();
+
 ?>
 
