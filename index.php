@@ -24,9 +24,9 @@ $pagination = $client->getProductManager()->paginate([
 //$currentProducts = $pagination->current(0); //current page
 //print_r($pagination);
 $i=1;
-$pagination->current(1);
+print_r($pagination->current());
 while ($pagination->hasNext()) {
-    $currentProducts = $pagination->current($i++);
+    $currentProducts = $pagination->current();
     //print_r($currentProducts);
     foreach($currentProducts as $product){
         // print_r($product);
