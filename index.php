@@ -33,10 +33,11 @@ while ($pagination->hasNext()) {
         //print_r($product->getImages());
         $images = $product->getImages();
         foreach($images as $image){
-            echo $image->getSrc()."<br>";
+           // echo $image->getSrc()."<br>";
             $url = $image->getSrc();
             $img = './originalfiles/';
             $filename = substr(basename($url),0,strpos($img.basename($url),"?v="));
+            echo $filename;
             file_put_contents($img.$filename, file_get_contents($url));
         }
          echo "----<br>";
