@@ -34,6 +34,9 @@ while ($pagination->hasNext()) {
         $images = $product->getImages();
         foreach($images as $image){
             echo $image->getSrc()."<br>";
+            $url = $image->getSrc();
+            $img = './originalfiles/';
+            file_put_contents($img.basename($url), file_get_contents($url));
         }
          echo "----<br>";
      
