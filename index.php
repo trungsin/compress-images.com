@@ -23,8 +23,8 @@ $pagination = $client->getProductManager()->paginate([
 
 //$currentProducts = $pagination->current(0); //current page
 //print_r($pagination);
-$i=0;
-$pagination->current(0);
+$i=1;
+$pagination->current(1);
 while ($pagination->hasNext()) {
     $currentProducts = $pagination->current($i++);
     //print_r($currentProducts);
