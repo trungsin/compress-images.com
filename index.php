@@ -21,22 +21,24 @@ $pagination = $client->getProductManager()->paginate([
 ]);
 // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
-//$currentProducts = $pagination->current(); //current page
+//$currentProducts = $pagination->current(0); //current page
 //print_r($pagination);
-// while ($pagination->hasNext()) {
-//     $currentProducts = $pagination->current();
-//     print_r($currentProducts);
-//     echo "----<br>";
-//     $nextProducts = $pagination->next();
-// }
+$i=0;
+while ($pagination->hasNext()) {
+    $currentProducts = $pagination->current($i++);
+    //print_r($currentProducts);
+    foreach($currentProducts as $product){
+        // print_r($product);
+         echo $product->getId();
+         echo "----<br>";
+     
+     }
+    echo $i."----------<br>";
+    $nextProducts = $pagination->next();
+}
 //echo $client->getProductManager()->count();
 $productCount =$client->getProductManager()->count();
-foreach($products as $product){
-   // print_r($product);
-    echo $product->getId();
-    echo "----<br>";
 
-}
 
 ?>
 
