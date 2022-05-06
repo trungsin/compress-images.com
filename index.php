@@ -36,7 +36,8 @@ while ($pagination->hasNext()) {
             echo $image->getSrc()."<br>";
             $url = $image->getSrc();
             $img = './originalfiles/';
-            file_put_contents($img.basename($url), file_get_contents($url));
+            $filename = substr($img.basename($url),0,strpos($img.basename($url),"?v="));
+            file_put_contents($img.$filename, file_get_contents($url));
         }
          echo "----<br>";
      
