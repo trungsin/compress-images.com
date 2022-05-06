@@ -21,8 +21,8 @@ $pagination = $client->getProductManager()->paginate([
 ]);
 // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
-$currentProducts = $pagination->current(); //current page
-print_r($currentProducts);
+$pagination->current(); //current page
+//print_r($currentProducts);
 $i=1;
 while ($pagination->hasNext()) {
     $currentProducts = $pagination->current();
