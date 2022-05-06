@@ -24,7 +24,6 @@ $pagination = $client->getProductManager()->paginate([
 //$currentProducts = $pagination->current(0); //current page
 //print_r($pagination);
 $i=1;
-print_r($pagination->current());
 while ($pagination->hasNext()) {
     $currentProducts = $pagination->current();
     //print_r($currentProducts);
@@ -34,8 +33,8 @@ while ($pagination->hasNext()) {
          echo "----<br>";
      
      }
-    echo $i."----------<br>";
-    $nextProducts = $pagination->next();
+    echo ($i++)."----------<br>";
+    $pagination->next();
 }
 //echo $client->getProductManager()->count();
 $productCount =$client->getProductManager()->count();
