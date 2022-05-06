@@ -12,30 +12,34 @@ $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV
 $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
     'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
 ]);
-$products = $client->getProductManager()->findALL();
-//print_r($product);
-$pagination = $client->getProductManager()->paginate([
-    // // filter your product
-     'limit' => 3,
-    // 'created_at_min' => '2015-04-25T16:15:47-04:00'
-]);
+// $products = $client->getProductManager()->findALL();
+// //print_r($product);
+// $pagination = $client->getProductManager()->paginate([
+//     // // filter your product
+//      'limit' => 50,
+//     // 'created_at_min' => '2015-04-25T16:15:47-04:00'
+// ]);
 // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
 //$currentProducts = $pagination->current(0); //current page
 //print_r($pagination);
 $i=0;
-while ($pagination->hasNext()) {
-    $currentProducts = $pagination->current($i++);
+//while ($pagination->hasNext()) {
+    $products = $client->getProductManager()->findAll([
+        // Filter your product
+        //'collection_id' => 841564295
+        'page' => 3 // deprecated
+    ]);
     //print_r($currentProducts);
-    foreach($currentProducts as $product){
+    foreach($products as $product){
         // print_r($product);
          echo $product->getId();
          echo "----<br>";
      
      }
-    echo $i."----------<br>";
-    $nextProducts = $pagination->next();
-}
+  //  echo $i."----------<br>";
+  //  $nextProducts = $pagination->next();
+//}
 //echo $client->getProductManager()->count();
 $productCount =$client->getProductManager()->count();
 
