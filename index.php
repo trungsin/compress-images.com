@@ -24,17 +24,17 @@ $pagination = $client->getProductManager()->paginate([
 $pagination->current(); //current page
 //print_r($currentProducts);
 $i=1;
+
+$products = $pagination->current();
 while ($pagination->hasNext()) {
-    $currentProducts = $pagination->current();
-    //print_r($currentProducts);
-    foreach($currentProducts as $product){
+    foreach($products as $product){
         // print_r($product);
          echo $product->getId();
          echo "----<br>";
      
      }
     echo ($i++)."----------<br>";
-    $pagination = $pagination->next();
+    $products = $pagination->next();
 }
 //echo $client->getProductManager()->count();
 $productCount =$client->getProductManager()->count();
