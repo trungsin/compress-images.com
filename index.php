@@ -30,7 +30,7 @@ $products = $pagination->current();
 while ($pagination->hasNext()) {
     foreach($products as $product){
         // print_r($product);
-         echo $product->getId();
+        print_r($product->getImages());
          echo "----<br>";
      
      }
