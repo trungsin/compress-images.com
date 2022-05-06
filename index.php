@@ -12,8 +12,23 @@ $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV
 $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
     'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
 ]);
-//$product = $client->getProductManager()->findALL();
+$product = $client->getProductManager()->findALL();
 //print_r($product);
+$pagination = $client->getProductManager()->paginate([
+    // // filter your product
+    // 'limit' => 3,
+    // 'created_at_min' => '2015-04-25T16:15:47-04:00'
+]);
+// $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
+
+//$currentProducts = $pagination->current(); //current page
+
+while ($pagination->hasNext()) {
+    $currentProducts = $pagination->current();
+    print_r($currentProducts);
+    echo "----<br>";
+    $nextProducts = $pagination->next();
+}
 echo $client->getProductManager()->count();
 ?>
 
