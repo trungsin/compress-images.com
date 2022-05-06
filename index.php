@@ -31,6 +31,10 @@ while ($pagination->hasNext()) {
     foreach($products as $product){
         // print_r($product);
         print_r($product->getImages());
+        $images = $product->getImages();
+        foreach($images as $image){
+            echo $image->getSrc()."<br>";
+        }
          echo "----<br>";
      
      }
