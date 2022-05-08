@@ -46,6 +46,7 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 $products = $pagination->current();
 function checkProductExist($productID_){
+    global $conn;
     $sql = "SELECT * FROM `Products` WHERE `ProductID`='$productID_'";
     $result = $conn->query($sql); 
     if ($result->num_rows > 0)       
@@ -53,6 +54,7 @@ function checkProductExist($productID_){
     return false;
 }
 function checkImageExist($imageID_){
+    global $conn;
     $sql = "SELECT * FROM `product_images` WHERE `imageID`='$imageID_'";
     $result = $conn->query($sql); 
     if ($result->num_rows > 0)       
@@ -60,12 +62,14 @@ function checkImageExist($imageID_){
     return false;
 }
 function createProduct($productID_, $title_){
+    global $conn;
     $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES('$productID_','$title_')";
     $result = $conn->query($sql); 
 
     return $result;
 }
 function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_imageID){
+    global $conn;
     $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES('$productID_','$title_')";
     $result = $conn->query($sql); 
 
