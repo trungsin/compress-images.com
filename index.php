@@ -90,7 +90,7 @@ while ($pagination->hasNext()) {
             $img = './node/originalfiles/';
             $filename = substr(basename($url),0,strpos(basename($url),"?v="));
             echo $filename;
-            createImage($productID,strpos(basename($url),$filename,$image->getAlt(),$imageID);
+            createImage($productID, basename($url), $filename, $image->getAlt(), $imageID);
             file_put_contents($img.$filename, file_get_contents($url));
         }
          echo "----<br>";
