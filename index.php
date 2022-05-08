@@ -50,9 +50,8 @@ $func = $_GET['func'];
 if($func == 'saved'){ 
     if (isset($_GET['page']))
         $page = $_GET['page'];
-    if ($page === null){
-        $page = 1;
-    } 
+    else 
+        $page = 1; 
     $sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
     $result = $conn->query($sql);
     ?>
