@@ -52,7 +52,7 @@ if($func == 'saved'){
     if ($page === ''){
         $page = 1;
     } 
-    $sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10), ($page*10);  // Retrieve rows 6-15
+    $sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
     $result = $conn->query($sql)
     ?>
 <table class="table table-dark">
@@ -75,10 +75,10 @@ if($func == 'saved'){
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $sql1 = "SELECT * FROM `product_images` WHERE `productID` ='".$row['productID']."'";
-            result1 = $conn->query($sql1);
+            $result1 = $conn->query($sql1);
             $numimage = $result1->num_rows;
             if($numimage > 0){
-                $row1 = $result->fetch_assoc()
+                $row1 = $result->fetch_assoc();
                 echo '<tr class="table-active">';
                 echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
                 echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
