@@ -103,7 +103,6 @@ if($func == 'saved'){
                     else 
                         echo '<td><img style="width: 80px;" src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
                     echo '<td>'.$row1['timeoptimal'].'</td>';
-                    echo '<td>'.$row1['optimalfile'].'</td>';
                     echo '<td>'.$row1['originalsize'].'</td>';
                     echo '<td>'.$row1['optimalsize'].'</td>';
                     echo '<td>'.$row1['percent'].'</td>';
