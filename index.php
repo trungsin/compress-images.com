@@ -80,7 +80,7 @@ if($func == 'saved'){
             if($numimage > 0){
                 $row1 = $result1->fetch_assoc();
                 echo '<tr class="table-active">';
-                echo '<th rowspan="'.$numimage.'" scope="row"><a href="'.$rootShop.'/admin/products/'.$row['productID'].'"'.$row['title'].'</th>';
+                echo '<th rowspan="'.$numimage.'" scope="row"><a href="'.$rootShop.'/admin/products/'.$row['productID'].'">'.$row['title'].'</a></th>';
                 echo '<td><img style="width: 80px;"  src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                 if($row1['optimalfile'] == '')
                     echo '<td></td>';
