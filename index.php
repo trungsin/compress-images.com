@@ -70,7 +70,7 @@ function createProduct($productID_, $title_){
 }
 function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_imageID){
     global $conn;
-    $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES('$productID_','$title_')";
+    $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES('$productID_','$originalfile_','$optimalfile_','$alttitle_','$_imageID')";
     $result = $conn->query($sql); 
 
     return $result;
