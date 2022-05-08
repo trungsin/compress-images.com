@@ -123,36 +123,6 @@ if($func == 'saved'){
 <?
 } elseif($func == "request"){ //read data from shopify
     $products = $pagination->current();
-    function checkProductExist($productID_){
-        global $conn;
-        $sql = "SELECT * FROM `Products` WHERE `ProductID`='$productID_'";
-        $result = $conn->query($sql); 
-        if ($result->num_rows > 0)       
-            return true;
-        return false;
-    }
-    function checkImageExist($imageID_){
-        global $conn;
-        $sql = "SELECT * FROM `product_images` WHERE `imageID`='$imageID_'";
-        $result = $conn->query($sql); 
-        if ($result->num_rows > 0)       
-            return true;
-        return false;
-    }
-    function createProduct($productID_, $title_){
-        global $conn;
-        $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES('$productID_','$title_')";
-        $result = $conn->query($sql); 
-    
-        return $result;
-    }
-    function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_imageID){
-        global $conn;
-        $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES('$productID_','$originalfile_','$optimalfile_','$alttitle_','$_imageID')";
-        $result = $conn->query($sql); 
-    
-        return $result;
-    }
     while ($pagination->hasNext()) {
         foreach($products as $product){
             // print_r($product);
@@ -195,3 +165,35 @@ if($func == 'saved'){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php
+function checkProductExist($productID_){
+    global $conn;
+    $sql = "SELECT * FROM `Products` WHERE `ProductID`='$productID_'";
+    $result = $conn->query($sql); 
+    if ($result->num_rows > 0)       
+        return true;
+    return false;
+}
+function checkImageExist($imageID_){
+    global $conn;
+    $sql = "SELECT * FROM `product_images` WHERE `imageID`='$imageID_'";
+    $result = $conn->query($sql); 
+    if ($result->num_rows > 0)       
+        return true;
+    return false;
+}
+function createProduct($productID_, $title_){
+    global $conn;
+    $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES('$productID_','$title_')";
+    $result = $conn->query($sql); 
+
+    return $result;
+}
+function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_imageID){
+    global $conn;
+    $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES('$productID_','$originalfile_','$optimalfile_','$alttitle_','$_imageID')";
+    $result = $conn->query($sql); 
+
+    return $result;
+}
+?>
