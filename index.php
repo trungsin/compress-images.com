@@ -48,7 +48,79 @@ if ($conn->connect_error) {
 //echo "Connected successfully";
 $func = $_GET['func'];
 if($func == 'saved'){ 
-    
+    $page = $GET['page'];
+    if ($page === null){
+        $page = 1;
+    } 
+    $sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
+    $result = $conn->query($sql)
+    ?>
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Title Product</th>
+        <th scope="col">Original file</th>
+        <th scope="col">Optimal file</th>
+        <th scope="col">Time Optimal</th>
+        <th scope="col">Original Size</th>
+        <th scope="col">Optimal Size</th>
+        <th scope="col">Percent</th>
+        <th scope="col">Alt Title</th>
+        <th scope="col">Optimze</th>
+        <th scope="col">Apply</th>
+      </tr>
+    </thead>
+    <tbody>
+ <?php
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $sql1 = "SELECT * FROM `product_images` WHERE `productID` ='".$row['productID']."'";
+            $result1 = $conn->query($sql1);
+            $numimage = $result1->num_rows;
+            if($numimage > 0){
+                $row1 = $result->fetch_assoc();
+                echo '<tr class="table-active">';
+                echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
+                echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
+                if($row1['optimalfile'] == '')
+                    echo '<td></td>';
+                else 
+                    echo '<td><img src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
+                echo '<td>'.$row1['timeoptimal'].'</td>';
+                echo '<td>'.$row1['optimalfile'].'</td>';
+                echo '<td>'.$row1['originalsize'].'</td>';
+                echo '<td>'.$row1['optimalsize'].'</td>';
+                echo '<td>'.$row1['percent'].'</td>';
+                echo '<td>'.$row1['alttitle'].'</td>';
+                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                echo '</tr>';
+                while($row1 = $result->fetch_assoc()){
+                    echo '<tr class="table-active">';
+                    //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
+                    echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
+                    if($row1['optimalfile'] == '')
+                        echo '<td></td>';
+                    else 
+                        echo '<td><img src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
+                    echo '<td>'.$row1['timeoptimal'].'</td>';
+                    echo '<td>'.$row1['optimalfile'].'</td>';
+                    echo '<td>'.$row1['originalsize'].'</td>';
+                    echo '<td>'.$row1['optimalsize'].'</td>';
+                    echo '<td>'.$row1['percent'].'</td>';
+                    echo '<td>'.$row1['alttitle'].'</td>';
+                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                    echo '</tr>';
+                } //end while
+            }//end if
+
+        }//end while
+    }//end if
+ ?>  
+    </tbody>
+  </table>
+<?
 } elseif($func == "request"){ //read data from shopify
     $products = $pagination->current();
     while ($pagination->hasNext()) {
@@ -70,7 +142,7 @@ if($func == 'saved'){
                 $img = './node/originalfiles/';
                 $filename = substr(basename($url),0,strpos(basename($url),"?v="));
                 echo $filename;
-                createImage($productID, basename($url), $filename, $image->getAlt(), $imageID);
+                createImage($productID, $filename, '', $image->getAlt(), $imageID);
                 file_put_contents($img.$filename, file_get_contents($url));
             }
              echo "----<br>";
