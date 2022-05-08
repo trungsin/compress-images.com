@@ -81,7 +81,7 @@ if($func == 'saved'){
                 $row1 = $result1->fetch_assoc();
                 echo '<tr class="table-active">';
                 echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
-                echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
+                echo '<td><img style="width: 80px;"  src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                 if($row1['optimalfile'] == '')
                     echo '<td></td>';
                 else 
@@ -98,7 +98,7 @@ if($func == 'saved'){
                 while($row1 = $result1->fetch_assoc()){
                     echo '<tr class="table-active">';
                     //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
-                    echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
+                    echo '<td><img style="width: 80px;" src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                     if($row1['optimalfile'] == '')
                         echo '<td></td>';
                     else 
