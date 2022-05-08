@@ -49,9 +49,9 @@ if ($conn->connect_error) {
 $func = $_GET['func'];
 if($func == 'saved'){ 
     $page = $GET['page'];
-    if ($page === null){
+    //if ($page === null){
         $page = 1;
-    } 
+    //} 
     $sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
     $result = $conn->query($sql)
     ?>
