@@ -34,7 +34,7 @@ $i=1;
 $servername = $_ENV["MYSQLSERVER"];
 $username = $_ENV["MYSQLUSER"];
 $password = $_ENV["MYSQLPASS"];
-$db = $_ENV["MYSQLDB"]
+$db = $_ENV["MYSQLDB"];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$db);
