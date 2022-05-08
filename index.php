@@ -85,7 +85,7 @@ if($func == 'saved'){
                 if($row1['optimalfile'] == '')
                     echo '<td></td>';
                 else 
-                    echo '<td><img src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
+                    echo '<td><img  height="80" width="80" src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
                 echo '<td>'.$row1['timeoptimal'].'</td>';
                 echo '<td>'.$row1['optimalfile'].'</td>';
                 echo '<td>'.$row1['originalsize'].'</td>';
@@ -102,7 +102,7 @@ if($func == 'saved'){
                     if($row1['optimalfile'] == '')
                         echo '<td></td>';
                     else 
-                        echo '<td><img src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
+                        echo '<td><img height="80" width="80" src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
                     echo '<td>'.$row1['timeoptimal'].'</td>';
                     echo '<td>'.$row1['optimalfile'].'</td>';
                     echo '<td>'.$row1['originalsize'].'</td>';
