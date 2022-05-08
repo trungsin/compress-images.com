@@ -16,7 +16,7 @@ $dotenv->load();
 //$credential = new Slince\Shopify\PublicAppCredential('Access Token');
 // Or Private App
 $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], '617f6659065b53e31eacb54a6686fd5e');
-
+$rootShop = "https://".$_ENV["NAMESHOP"];
 $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
     'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
 ]);
@@ -80,14 +80,13 @@ if($func == 'saved'){
             if($numimage > 0){
                 $row1 = $result1->fetch_assoc();
                 echo '<tr class="table-active">';
-                echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
+                echo '<th rowspan="'.$numimage.'" scope="row"><a href="'.$rootShop.'/admin/products/'.$row['productID'].'"'.$row['title'].'</th>';
                 echo '<td><img style="width: 80px;"  src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                 if($row1['optimalfile'] == '')
                     echo '<td></td>';
                 else 
                     echo '<td><img style="width: 80px;" src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
                 echo '<td>'.$row1['timeoptimal'].'</td>';
-                echo '<td>'.$row1['optimalfile'].'</td>';
                 echo '<td>'.$row1['originalsize'].'</td>';
                 echo '<td>'.$row1['optimalsize'].'</td>';
                 echo '<td>'.$row1['percent'].'</td>';
