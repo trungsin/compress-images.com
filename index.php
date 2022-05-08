@@ -78,41 +78,41 @@ if($func == 'saved'){
             $result1 = $conn->query($sql1);
             $numimage = $result1->num_rows;
             if($numimage > 0){
-                $row1 = $result->fetch_assoc();
-                echo '<tr class="table-active">';
-                echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
-                echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
-                if($row1['optimalfile'] == '')
-                    echo '<td></td>';
-                else 
-                    echo '<td><img src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
-                echo '<td>'.$row1['timeoptimal'].'</td>';
-                echo '<td>'.$row1['optimalfile'].'</td>';
-                echo '<td>'.$row1['originalsize'].'</td>';
-                echo '<td>'.$row1['optimalsize'].'</td>';
-                echo '<td>'.$row1['percent'].'</td>';
-                echo '<td>'.$row1['alttitle'].'</td>';
-                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
-                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
-                echo '</tr>';
-                while($row1 = $result->fetch_assoc()){
-                    echo '<tr class="table-active">';
-                    //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
-                    echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
-                    if($row1['optimalfile'] == '')
-                        echo '<td></td>';
-                    else 
-                        echo '<td><img src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
-                    echo '<td>'.$row1['timeoptimal'].'</td>';
-                    echo '<td>'.$row1['optimalfile'].'</td>';
-                    echo '<td>'.$row1['originalsize'].'</td>';
-                    echo '<td>'.$row1['optimalsize'].'</td>';
-                    echo '<td>'.$row1['percent'].'</td>';
-                    echo '<td>'.$row1['alttitle'].'</td>';
-                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
-                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
-                    echo '</tr>';
-                } //end while
+                // $row1 = $result->fetch_assoc();
+                // echo '<tr class="table-active">';
+                // echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
+                // echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
+                // if($row1['optimalfile'] == '')
+                //     echo '<td></td>';
+                // else 
+                //     echo '<td><img src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
+                // echo '<td>'.$row1['timeoptimal'].'</td>';
+                // echo '<td>'.$row1['optimalfile'].'</td>';
+                // echo '<td>'.$row1['originalsize'].'</td>';
+                // echo '<td>'.$row1['optimalsize'].'</td>';
+                // echo '<td>'.$row1['percent'].'</td>';
+                // echo '<td>'.$row1['alttitle'].'</td>';
+                // echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                // echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                // echo '</tr>';
+                // while($row1 = $result->fetch_assoc()){
+                //     echo '<tr class="table-active">';
+                //     //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
+                //     echo '<td><img src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
+                //     if($row1['optimalfile'] == '')
+                //         echo '<td></td>';
+                //     else 
+                //         echo '<td><img src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
+                //     echo '<td>'.$row1['timeoptimal'].'</td>';
+                //     echo '<td>'.$row1['optimalfile'].'</td>';
+                //     echo '<td>'.$row1['originalsize'].'</td>';
+                //     echo '<td>'.$row1['optimalsize'].'</td>';
+                //     echo '<td>'.$row1['percent'].'</td>';
+                //     echo '<td>'.$row1['alttitle'].'</td>';
+                //     echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                //     echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                //     echo '</tr>';
+                // } //end while
             }//end if
 
         }//end while
