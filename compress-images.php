@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 }
 $image = $_GET['image'];
 $curl = curl_init();
-$url = "http://".$localApi."/optimze/".$data;
+$url = "http://".$localApi."/optimze/".$image;
 
 // Optional Authentication:
 //    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -36,6 +36,6 @@ $result = curl_exec($curl);
 curl_close($curl);
 
 header('Content-Type: application/json; charset=utf-8');
-echo json_encode($data);
-die;
+echo json_encode($result);
+//die;
 ?>
