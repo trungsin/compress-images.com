@@ -33,8 +33,9 @@ curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
 $result = curl_exec($curl);
-print_r($result);
-$sql = "UPDATE `product_images` SET `optimalfile` = '".basename($result['path_out_new'])."', `originalsize` = ".$result['size_in'].", `optimalsize`=".$result['size_output'].", `percent`='".$result['percent']."%', `timeoptimal`=1 WHERE imageID='".$imageID."'";
+$r = json_decode($result, true);
+print_r($r);
+$sql = "UPDATE `product_images` SET `optimalfile` = '".basename($r['path_out_new'])."', `originalsize` = ".$r['size_in'].", `optimalsize`=".$r['size_output'].", `percent`='".$r['percent']."%', `timeoptimal`=1 WHERE imageID='".$imageID."'";
 $conn->query($sql); 
 
 curl_close($curl);
