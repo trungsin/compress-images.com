@@ -210,7 +210,9 @@ if($func == 'saved'){
             console.log(selected);
            
         });
-        function jsOptimaze();
+        function jsOptimaze(){
+            
+        }
 
     });
 
