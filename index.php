@@ -200,11 +200,11 @@ if($func == 'saved'){
                 console.log('Start')
                 $('input[name="optimze-check-input"]:checked').each(async function() {
                 //selected.forEach(async dataOpt => {
-                    dataOpt = this.value;
+                    dataOpt = await this.value;
                     //console.log(dataOpt);
-                    imgOpts = dataOpt.split(",");
-                    imgOpt = imgOpts[1];
-                    console.log(imgOpt);
+                    imgOpts = await dataOpt.split(",");
+                    imgOpt = await imgOpts[1];
+                    //console.log(imgOpt);
                     const resultImg = await jsOptimaze(imgOpt)
                     console.log(resultImg)
                 });
