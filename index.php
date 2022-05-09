@@ -174,8 +174,9 @@ if($func == 'saved'){
     //echo $client->getProductManager()->count();
     //$productCount =$client->getProductManager()->count();
 } elseif($func == "optimze") { //optimage image
-
-} else { //apply optimzed image to product shopify
+    $image = $_GET['image'];
+    Optimaze($image);
+} elseif($func == "") { //apply optimzed image to product shopify
 
 }
 
@@ -208,8 +209,11 @@ if($func == 'saved'){
             }
             console.log(selected);
            
-        })
+        });
+        function jsOptimaze();
+
     });
+
 </script>
 </body>
 </html>
