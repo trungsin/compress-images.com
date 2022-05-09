@@ -109,7 +109,7 @@ if($func == 'saved'){
                 echo '<th rowspan="'.$numimage.'" scope="row"><a href="'.$rootShop.'/admin/products/'.$row['productID'].'">'.$row['title'].'</a></th>';
                 echo '<td><img style="width: 80px;"  src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                 if($row1['optimalfile'] == '')
-                    echo '<td></td>';
+                    echo '<td><span id="'.$row1['imageID'].'"></td>';
                 else 
                     echo '<td><img style="width: 80px;" src="./node/c/'.$row1['optimalfile'].'"/></td>';
                 echo '<td>'.$row1['timeoptimal'].'</td>';
@@ -125,7 +125,7 @@ if($func == 'saved'){
                     //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
                     echo '<td><img style="width: 80px;" src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                     if($row1['optimalfile'] == '')
-                        echo '<td><span id="'.$row1['imageID'].'</td>';
+                        echo '<td><span id="'.$row1['imageID'].'"></td>';
                     else 
                         echo '<td><img style="width: 80px;" src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
                     echo '<td>'.$row1['timeoptimal'].'</td>';
