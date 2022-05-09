@@ -225,7 +225,7 @@ if($func == 'saved'){
                 imgOpts = dataOpt.split(",");
                 imgOpt = imgOpts[1];
                 $.ajax({
-                    url: "./?func=optimze&image="+data, 
+                    url: "./?func=optimze&image="+imgOpt, 
                     success: function(result){
                         console.log(result);
                         },
