@@ -37,6 +37,7 @@ $servername = $_ENV["MYSQLSERVER"];
 $username = $_ENV["MYSQLUSER"];
 $password = $_ENV["MYSQLPASS"];
 $db = $_ENV["MYSQLDB"];
+$localApi = $_ENV["LOCALAPI"];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$db);
@@ -66,7 +67,7 @@ if($func == 'saved'){
         <th scope="col">Optimal Size</th>
         <th scope="col">Percent</th>
         <th scope="col">Alt Title</th>
-        <th scope="col">Optimze</th>
+        <th scope="col"><button type="button" id="btnOptimze" class="btn btn-primary">Optimazing</button></th>
         <th scope="col">Apply</th>
       </tr>
     </thead>
@@ -85,14 +86,14 @@ if($func == 'saved'){
                 if($row1['optimalfile'] == '')
                     echo '<td></td>';
                 else 
-                    echo '<td><img style="width: 80px;" src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
+                    echo '<td><img style="width: 80px;" src="./node/c/'.$row1['optimalfile'].'"/></td>';
                 echo '<td>'.$row1['timeoptimal'].'</td>';
                 echo '<td>'.$row1['originalsize'].'</td>';
                 echo '<td>'.$row1['optimalsize'].'</td>';
                 echo '<td>'.$row1['percent'].'</td>';
                 echo '<td>'.$row1['alttitle'].'</td>';
-                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
-                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '</tr>';
                 while($row1 = $result1->fetch_assoc()){
                     echo '<tr class="table-active">';
@@ -107,21 +108,32 @@ if($func == 'saved'){
                     echo '<td>'.$row1['optimalsize'].'</td>';
                     echo '<td>'.$row1['percent'].'</td>';
                     echo '<td>'.$row1['alttitle'].'</td>';
-                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
-                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input"></td>';
+                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     echo '</tr>';
                 } //end while
             }//end if
 
         }//end while
     }//end if
+
+    $totalpage = $client->getProductManager()->count();
+    $k = 8%$page;
+    //if()
  ?> <tr>
      <td colspan="10"><nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <?php //for($i=) ?>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
     <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="#">5</a></li>
+    <li class="page-item"><a class="page-link" href="#">6</a></li>
+    <li class="page-item"><a class="page-link" href="#">7</a></li>
+    <li class="page-item"><a class="page-link" href="#">8</a></li>
+    <li class="page-item"><a class="page-link" href="#">...</a></li>
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
 </nav></td>
@@ -171,6 +183,16 @@ if($func == 'saved'){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script>
+    $("btnOptimze").click(function(){
+        var selected = [];
+            $('#checkboxes input:checked').each(function() {
+            selected.push($(this).attr('name'));
+        });
+        alert("sss");
+    })
+    
+</script>
 </body>
 </html>
 <?php
@@ -201,6 +223,24 @@ function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_im
     global $conn;
     $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES('$productID_','$originalfile_','$optimalfile_','$alttitle_','$_imageID')";
     $result = $conn->query($sql); 
+
+    return $result;
+}
+function Optimaze($data)
+{
+    $curl = curl_init();
+    $url = "http://".$localApi."/optimze/".$data;
+
+    // Optional Authentication:
+//    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+//    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
+
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+    $result = curl_exec($curl);
+
+    curl_close($curl);
 
     return $result;
 }
