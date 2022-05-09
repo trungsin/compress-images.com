@@ -208,7 +208,7 @@ if($func == 'saved'){
                 });
                 console.log('End')
             }
-            console.log(selected);
+            console.log(forEachLoop);
            
         });
         function jsOptimaze(data){
