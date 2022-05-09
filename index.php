@@ -225,12 +225,12 @@ if($func == 'saved'){
                 imgOpts = dataOpt.split(",");
                 imgOpt = imgOpts[1];
                 $.ajax({
-                    url: "./?func=optimze&image="+imgOpt, 
+                    url: "compress-images.php/?image="+imgOpt, 
                     success: function(result){
                         console.log(result);
                         },
                     beforeSend: function() {
-                        $("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loading-icon-17.jpeg" alt="Loading..."/></div>');
+                        //$("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loading-icon-17.jpeg" alt="Loading..."/></div>');
                     },
                 });
             });
