@@ -193,7 +193,7 @@ if($func == 'saved'){
             });
             alert("sss");
         })
-    }
+    });
 </script>
 </body>
 </html>
