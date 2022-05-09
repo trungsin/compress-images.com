@@ -5,7 +5,7 @@
     <style>
         #loading {
         background-color:white;
-        position: fixed;
+        /* position: fixed; */
         display: block;
         top: 0;
         bottom: 0;
@@ -19,8 +19,8 @@
         #loading img {
         margin: auto;
         display: block;
-        top: calc(50% - 100px);
-        left: calc(50% - 10px);
+        /* top: calc(50% - 100px); */
+        /* left: calc(50% - 10px); */
         position: absolute;
         z-index: 999999;
         }
@@ -229,7 +229,7 @@ if($func == 'saved'){
                         console.log(result);
                         },
                     beforeSend: function() {
-                        //$("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loading-icon-17.jpeg" alt="Loading..."/></div>');
+                        $("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loader.gif" alt="Loading..."/></div>');
                     },
                 });
             });
