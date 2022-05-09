@@ -223,9 +223,8 @@ if($func == 'saved'){
                 dataOpt =  this.value;
                     //console.log(dataOpt);
                 imgOpts = dataOpt.split(",");
-                imgOpt = imgOpts[1];
                 $.ajax({
-                    url: "compress-images.php/?image="+imgOpt, 
+                    url: "compress-images.php/?image="+imgOpts[1]+"&ID="+imgOpts[0], 
                     success: function(result){
                         console.log(result);
                         },

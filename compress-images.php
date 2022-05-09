@@ -21,6 +21,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 $image = $_GET['image'];
+$imageID = $_GET['ID'];
 $curl = curl_init();
 $url = "http://".$localApi."/optimze/".$image;
 
@@ -32,6 +33,8 @@ curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
 $result = curl_exec($curl);
+$sql = "UPDATE `product_images` SET `optimalfile` = '".basename($result->path_out_new)."', `originalsize` = ".$result->size_in.", `optimalsize`=".$result->size_output.", `percent`='".$result->percent."%', `timeoptimal`=1 WHERE imageID='".$imageID."'";
+$conn->query($sql); 
 
 curl_close($curl);
 
