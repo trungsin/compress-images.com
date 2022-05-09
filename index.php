@@ -208,10 +208,10 @@ if($func == 'saved'){
                 });
                 console.log('End')
             //}
-            console.log(forEachLoop);
+            //console.log(forEachLoop);
            
         });
-        function jsOptimaze(data){
+        async function jsOptimaze(data){
             $.ajax({url: "http://compress-images.com/?func=optimze&image="+data, success: function(result){
                 return result;
             }});
