@@ -196,7 +196,7 @@ if($func == 'saved'){
             // $('input[name="optimze-check-input"]:checked').each(function() {
             //      console.log(this.value);
             // });
-            const forEachLoop = _ => {
+            //const forEachLoop = _ => {
                 console.log('Start')
                 $('input[name="optimze-check-input"]:checked').each(async function() {
                 //selected.forEach(async dataOpt => {
@@ -207,7 +207,7 @@ if($func == 'saved'){
                     console.log(resultImg)
                 });
                 console.log('End')
-            }
+            //}
             console.log(forEachLoop);
            
         });
