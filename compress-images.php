@@ -33,6 +33,7 @@ curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
 $result = curl_exec($curl);
+print_r($result);
 $sql = "UPDATE `product_images` SET `optimalfile` = '".basename($result->path_out_new)."', `originalsize` = ".$result->size_in.", `optimalsize`=".$result->size_output.", `percent`='".$result->percent."%', `timeoptimal`=1 WHERE imageID='".$imageID."'";
 $conn->query($sql); 
 
