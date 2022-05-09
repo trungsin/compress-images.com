@@ -226,15 +226,25 @@ if($func == 'saved'){
                 dataOpt =  this.value;
                     //console.log(dataOpt);
                 imgOpts = dataOpt.split(",");
+                // $.ajax({
+                //     url: "compress-images.php/?image="+imgOpts[1]+"&ID="+imgOpts[0], 
+                //     success: function(result){
+                //         console.log("sss");
+                //         console.log(result);
+                //         },
+                //     beforeSend: function() {
+                //         $("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loader.gif" alt="Loading..."/></div>');
+                //     },
+                // });
                 $.ajax({
                     url: "compress-images.php/?image="+imgOpts[1]+"&ID="+imgOpts[0], 
-                    success: function(result){
-                        console.log("sss");
-                        console.log(result);
-                        },
-                    beforeSend: function() {
+                    beforeSend: function( xhr ) {
                         $("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loader.gif" alt="Loading..."/></div>');
-                    },
+                    }
+                    })
+                    .done(function( data ) {
+                        console.log("sss");
+                        console.log(data);
                 });
             });
             // $('input[name="optimze-check-input"]:checked').each(function() {
