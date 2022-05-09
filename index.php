@@ -192,6 +192,9 @@ if($func == 'saved'){
             $('.optimze-check-input input[type="checkbox"]:checked').each(function() {
                 selected.push($(this).val());
             });
+            $('input[name="optimze-check-input"]:checked').each(function() {
+                 console.log(this.value);
+            });
             console.log(selected);
             alert("sss");
         })
