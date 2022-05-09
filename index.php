@@ -92,7 +92,7 @@ if($func == 'saved'){
                 echo '<td>'.$row1['optimalsize'].'</td>';
                 echo '<td>'.$row1['percent'].'</td>';
                 echo '<td>'.$row1['alttitle'].'</td>';
-                echo '<td><input name="optimze-check-input[]" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                echo '<td><input name="optimze-check-input" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '<td><input class="apply-check-input mt-0" type="checkbox" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '</tr>';
                 while($row1 = $result1->fetch_assoc()){
@@ -108,7 +108,7 @@ if($func == 'saved'){
                     echo '<td>'.$row1['optimalsize'].'</td>';
                     echo '<td>'.$row1['percent'].'</td>';
                     echo '<td>'.$row1['alttitle'].'</td>';
-                    echo '<td><input name="optimze-check-input[]" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    echo '<td><input name="optimze-check-input" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     echo '<td><input class="apply-check-input mt-0" type="checkbox"  data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     echo '</tr>';
                 } //end while
