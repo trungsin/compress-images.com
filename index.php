@@ -189,7 +189,6 @@ if($func == 'saved'){
 
         $("#btnOptimze").click(function(){
             var selected = [];
-                selected.push($(this).val());
             $('input[name="optimze-check-input"]:checked').each(function() {
                 selected.push(this.val()); 
             });
