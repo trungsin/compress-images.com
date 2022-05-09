@@ -202,7 +202,7 @@ if($func == 'saved'){
                 selected.forEach(async dataOpt => {
                     imgOpts = dataOpt.split(",");
                     imgOpt = imgOpts[1];
-                    const resultImg = await Optimaze(imgOpt)
+                    const resultImg = await jsOptimaze(imgOpt)
                     console.log(resultImg)
                 });
                 console.log('End')
@@ -210,8 +210,10 @@ if($func == 'saved'){
             console.log(selected);
            
         });
-        function jsOptimaze(){
-            
+        function jsOptimaze(data){
+            $.ajax({url: "http://compress-images.com/?func=optimze&image="+data, success: function(result){
+                return result;
+            }});
         }
 
     });
