@@ -250,7 +250,7 @@ if($func == 'saved'){
                         console.log(data);
                         const obj = JSON.parse(data);
                         var filename = obj.path_out_new.substr(obj.path_out_new.lastIndexOf("/")+1);
-                        $("#"+imgOpts[0]).html('<div id="loading"><img src="./node/optimalfile/'+ filename +'" alt="Loading..."/></div>');
+                        $("#"+imgOpts[0]).html('<img style="width: 80px;" src="./node/optimalfile/'+ filename +'"/>');
                     });
             });
             // $('input[name="optimze-check-input"]:checked').each(function() {
