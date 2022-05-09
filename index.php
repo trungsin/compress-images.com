@@ -238,6 +238,7 @@ if($func == 'saved'){
                 // });
                 $.ajax({
                     url: "compress-images.php/?image="+imgOpts[1]+"&ID="+imgOpts[0], 
+                    type: 'GET',
                     beforeSend: function( xhr ) {
                         $("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loader.gif" alt="Loading..."/></div>');
                     }
@@ -245,7 +246,7 @@ if($func == 'saved'){
                     .done(function( data ) {
                         console.log("sss");
                         console.log(data);
-                });
+                    });
             });
             // $('input[name="optimze-check-input"]:checked').each(function() {
             //      console.log(this.value);
