@@ -187,7 +187,7 @@ if($func == 'saved'){
 <script>
     $(document).ready(function() {
 
-        $("btnOptimze").click(function(){
+        $("#btnOptimze").click(function(){
             var selected = [];
                 $('#checkboxes input:checked').each(function() {
                 selected.push($(this).attr('name'));
