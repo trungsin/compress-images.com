@@ -2,8 +2,33 @@
     <head>
     <title> Optimze image for Store Shopify </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        #loading {
+        background-color:white;
+        position: fixed;
+        display: block;
+        top: 0;
+        bottom: 0;
+        z-index: 1000000;
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        }
+
+        #loading img {
+        margin: auto;
+        display: block;
+        top: calc(50% - 100px);
+        left: calc(50% - 10px);
+        position: absolute;
+        z-index: 999999;
+        }
+
+    </style>
 </head>
 <body>
+
 <?php
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -100,7 +125,7 @@ if($func == 'saved'){
                     //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
                     echo '<td><img style="width: 80px;" src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                     if($row1['optimalfile'] == '')
-                        echo '<td></td>';
+                        echo '<td><span id="'.$row1['imageID'].'</td>';
                     else 
                         echo '<td><img style="width: 80px;" src="./node/optimalfile/'.$row1['optimalfile'].'"/></td>';
                     echo '<td>'.$row1['timeoptimal'].'</td>';
@@ -108,7 +133,10 @@ if($func == 'saved'){
                     echo '<td>'.$row1['optimalsize'].'</td>';
                     echo '<td>'.$row1['percent'].'</td>';
                     echo '<td>'.$row1['alttitle'].'</td>';
-                    echo '<td><input name="optimze-check-input" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    if($row1['timeoptimal']>0)
+                        echo '<td><input name="optimze-check-input" disabled checked class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    else 
+                        echo '<td><input name="optimze-check-input" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     echo '<td><input class="apply-check-input mt-0" type="checkbox"  data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     echo '</tr>';
                 } //end while
@@ -192,24 +220,37 @@ if($func == 'saved'){
             var selected = [];
             $('input[name="optimze-check-input"]:checked').each(function() {
                 selected.push(this.value); 
+                dataOpt =  this.value;
+                    //console.log(dataOpt);
+                imgOpts = dataOpt.split(",");
+                imgOpt = imgOpts[1];
+                $.ajax({
+                    url: "./?func=optimze&image="+data, 
+                    success: function(result){
+                        console.log(result);
+                        },
+                    beforeSend: function() {
+                        $("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loading-icon-17.jpeg" alt="Loading..."/></div>');
+                    },
+                });
             });
             // $('input[name="optimze-check-input"]:checked').each(function() {
             //      console.log(this.value);
             // });
-            //const forEachLoop = _ => {
-                console.log('Start')
-                $('input[name="optimze-check-input"]:checked').each(async function() {
-                //selected.forEach(async dataOpt => {
-                    dataOpt = await this.value;
-                    //console.log(dataOpt);
-                    imgOpts = await dataOpt.split(",");
-                    imgOpt = await imgOpts[1];
-                    //console.log(imgOpt);
-                    const resultImg = await jsOptimaze(imgOpt)
-                    console.log(resultImg)
-                });
-                console.log('End')
-            //}
+            // //const forEachLoop = _ => {
+            //     console.log('Start')
+            //     $('input[name="optimze-check-input"]:checked').each(async function() {
+            //     //selected.forEach(async dataOpt => {
+            //         dataOpt = await this.value;
+            //         //console.log(dataOpt);
+            //         imgOpts = await dataOpt.split(",");
+            //         imgOpt = await imgOpts[1];
+            //         //console.log(imgOpt);
+            //         const resultImg = await jsOptimaze(imgOpt)
+            //         console.log(resultImg)
+            //     });
+            //     console.log('End')
+            // //}
             //console.log(forEachLoop);
            
         });
