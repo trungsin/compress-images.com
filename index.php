@@ -92,8 +92,8 @@ if($func == 'saved'){
                 echo '<td>'.$row1['optimalsize'].'</td>';
                 echo '<td>'.$row1['percent'].'</td>';
                 echo '<td>'.$row1['alttitle'].'</td>';
-                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
-                echo '<td><input class="form-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                echo '<td><input class="optimze-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                echo '<td><input class="apply-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '</tr>';
                 while($row1 = $result1->fetch_assoc()){
                     echo '<tr class="table-active">';
@@ -108,8 +108,8 @@ if($func == 'saved'){
                     echo '<td>'.$row1['optimalsize'].'</td>';
                     echo '<td>'.$row1['percent'].'</td>';
                     echo '<td>'.$row1['alttitle'].'</td>';
-                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
-                    echo '<td><input class="form-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    echo '<td><input class="optimze-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    echo '<td><input class="apply-check-input mt-0" type="checkbox" value="" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     echo '</tr>';
                 } //end while
             }//end if
@@ -189,9 +189,10 @@ if($func == 'saved'){
 
         $("#btnOptimze").click(function(){
             var selected = [];
-                $('#checkboxes input:checked').each(function() {
-                selected.push($(this).attr('name'));
+                $('.optimze-check-input input:checked').each(function() {
+                selected.push($(this).attr('data'));
             });
+            console.log(selected);
             alert("sss");
         })
     });
