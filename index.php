@@ -190,8 +190,11 @@ if($func == 'saved'){
         $("#btnOptimze").click(function(){
             var selected = [];
             $('input[name="optimze-check-input"]:checked').each(function() {
-                selected.push(this.val()); 
+                selected.push(this.value); 
             });
+            // $('input[name="optimze-check-input"]:checked').each(function() {
+            //      console.log(this.value);
+            // });
             const forEachLoop = _ => {
                 console.log('Start')
 
