@@ -189,14 +189,23 @@ if($func == 'saved'){
 
         $("#btnOptimze").click(function(){
             var selected = [];
-            $('.optimze-check-input input[type="checkbox"]:checked').each(function() {
                 selected.push($(this).val());
-            });
             $('input[name="optimze-check-input"]:checked').each(function() {
-                 console.log(this.value);
+                selected.push(this.val()); 
             });
+            const forEachLoop = _ => {
+                console.log('Start')
+
+                selected.forEach(async dataOpt => {
+                    imgOpts = dataOpt.split(",");
+                    imgOpt = imgOpts[1];
+                    const resultImg = await Optimaze(imgOpt)
+                    console.log(resultImg)
+                });
+                console.log('End')
+            }
             console.log(selected);
-            alert("sss");
+           
         })
     });
 </script>
@@ -235,6 +244,7 @@ function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_im
 }
 function Optimaze($data)
 {
+    global $localApi;
     $curl = curl_init();
     $url = "http://".$localApi."/optimze/".$data;
 
