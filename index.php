@@ -175,7 +175,7 @@ if($func == 'saved'){
     //$productCount =$client->getProductManager()->count();
 } elseif($func == "optimze") { //optimage image
     $image = $_GET['image'];
-    Optimaze($image);
+    print_r(Optimaze($image));
 } elseif($func == "") { //apply optimzed image to product shopify
 
 }
