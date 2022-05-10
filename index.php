@@ -121,11 +121,11 @@ if($func == 'saved'){
     if ($count > 0) {
         while ($row = $sth->fetch()) {
             $sql1 = "SELECT * FROM `product_images` WHERE `productID` ='".$row['productID']."'";
-            $sth1 = $conn->prepare($sql1,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            $sth1 = $conn->prepare($sql1);
             $sth1->setFetchMode(PDO:: FETCH_ASSOC);
 
             $sth1->execute();
-            $numimage  = $conn->query($sql1)->fetchColumn(); 
+            $numimage  = $sth1->fetchColumn(); 
             if($numimage > 0){
                 $row1 = $sth1->fetch();
                 echo '<tr class="table-active">';
