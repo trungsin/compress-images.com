@@ -125,7 +125,7 @@ if($func == 'saved'){
             $sth1->setFetchMode(PDO:: FETCH_ASSOC);
 
             $sth1->execute();
-            $numimage  = $conn->query($sql1)->fetchColumn(); 
+            $numimage  = $conn->query("SELECT count(*) FROM `product_images` WHERE `productID` ='".$row['productID']."'")->fetchColumn(); 
             if($numimage > 0){
                 $row1 = $sth1->fetch();
                 echo '<tr class="table-active">';
