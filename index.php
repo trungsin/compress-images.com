@@ -117,7 +117,7 @@ if($func == 'saved'){
     <tbody>
  <?php
     if ($count > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC,PDO::FETCH_ORI_NEXT)) {
             $sql1 = "SELECT * FROM `product_images` WHERE `productID` ='".$row['productID']."'";
             $sth1 = $conn->prepare($sql1);
             $result1 = $sth1->execute();
@@ -145,7 +145,7 @@ if($func == 'saved'){
                 else 
                     echo '<td><input class="apply-check-input mt-0" type="checkbox" value="'.$row1['imageID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '</tr>';
-                while($row1 = $result1->fetch(PDO::FETCH_ASSOC)){
+                while($row1 = $result1->fetch(PDO::FETCH_ASSOC,PDO::FETCH_ORI_NEXT)){
                     echo '<tr class="table-active">';
                     //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
                     echo '<td><img style="width: 80px;" src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
