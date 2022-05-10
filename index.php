@@ -205,9 +205,15 @@ if($func == 'saved'){
             foreach($images as $image){
                 // echo $image->getSrc()."<br>";
                 $imageID = $image->getId();
-                if (checkImageExist($imageID))
+                if (checkImageExist($imageID) == 1)
                     continue;
-    
+                elseif (checkImageExist($imageID)>1)
+                {
+                    $sql = "DELETE FROM `product_images` WHERE optimalfile ='' and `imageID`='".$imageID."'";
+                    $result = $conn->prepare($sql); 
+                    $result->execute();
+                    continue;
+                }
                 $url = $image->getSrc();
                 $img = './node/originalfiles/';
                 $filename = substr(basename($url),0,strpos(basename($url),"?v="));
@@ -352,9 +358,7 @@ function checkImageExist($imageID_){
     $sql = "SELECT count(*) AS `total` FROM `product_images` WHERE `imageID`='$imageID_'";
     $result = $conn->prepare($sql); 
     $result->execute();
-    if ($result->fetchObject()->total > 0)  
-        return true;
-    return false;
+    return $result->fetchObject()->total;
 }
 function createProduct($productID_, $title_){
     global $conn;
