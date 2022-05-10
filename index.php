@@ -65,7 +65,7 @@ $db = $_ENV["MYSQLDB"];
 $localApi = $_ENV["LOCALAPI"];
 
 // Create connection
-$conn = new mysqli($servername, $username, $password,$db);
+$conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
 
 // Check connection
 if ($conn->connect_error) {
