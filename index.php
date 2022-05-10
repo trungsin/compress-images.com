@@ -101,17 +101,17 @@ if($func == 'saved'){
     //$sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
     //$result = $conn->query($sql);
     ?>
-<table class="table table-dark">
+<table class="table table-dark" style="border-color: aqua;">
     <thead>
       <tr>
-        <th scope="col">Title Product</th>
+        <th scope="col" style="width: 300px;">Title Product</th>
         <th scope="col">Original file</th>
         <th scope="col">Optimal file</th>
         <th scope="col">Time Optimal</th>
         <th scope="col">Original Size</th>
         <th scope="col">Optimal Size</th>
         <th scope="col">Percent</th>
-        <th scope="col">Alt Title</th>
+        <th scope="col" style="width: 300px;">Alt Title</th>
         <th scope="col"><button type="button" id="btnOptimze" class="btn btn-primary">Optimazing</button></th>
         <th scope="col"><button type="button" id="btnApply" class="btn btn-primary">Apply</button></th>
       </tr>
@@ -200,7 +200,7 @@ if($func == 'saved'){
             if(checkProductExist($productID))
                 updateProduct($productID,$product->getTitle());
             else 
-                createProduct($productID,'title');
+                createProduct($productID,$product->getTitle());
             $images = $product->getImages();
             foreach($images as $image){
                 // echo $image->getSrc()."<br>";
