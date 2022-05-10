@@ -353,6 +353,7 @@ function checkImageExist($imageID_){
     $result = $conn->prepare($sql); 
     $result->execute();
     if ($result->fetchObject()->total > 0)  
+        return true;
     return false;
 }
 function createProduct($productID_, $title_){
