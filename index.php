@@ -130,7 +130,7 @@ if($func == 'saved'){
                 $row1 = $sth1->fetch();
                 echo '<tr class="table-active">';
                 echo '<th rowspan="'.$numimage.'" scope="row"><a href="'.$rootShop.'/admin/products/'.$row['productID'].'">'.$row['title'].'</a><br>
-                <button type="button" id="btnSelectProduct" class="btn btn-primary">Choose this product</button>
+                <button type="button" id="btnSelectProduct" onclick="selectProduct(\''.$productID.'\')" class="btn btn-primary">Choose this product</button>
                 </th>';
                 echo '<td><img style="width: 80px;"  src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                 if($row1['optimalfile'] == '')
@@ -145,7 +145,7 @@ if($func == 'saved'){
                 if($row1['timeoptimal']>0)
                     echo '<td><input name="optimze-check-input" disabled class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                 else 
-                    echo '<td><input name="optimze-check-input" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    echo '<td><input name="optimze-check-input" choose="'.$row['productID'].'" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                 if($row1['apply']>0)
                     echo '<td><input class="apply-check-input disabled mt-0" type="checkbox" aria-label="Checkbox for following text input"></td>';
                 else 
@@ -167,7 +167,7 @@ if($func == 'saved'){
                     if($row1['timeoptimal']>0)
                         echo '<td><input name="optimze-check-input" disabled  class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     else 
-                        echo '<td><input name="optimze-check-input" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                        echo '<td><input name="optimze-check-input" choose="'.$row['productID'].'" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     if($row1['apply']>0)
                         echo '<td><input class="apply-check-input mt-0" disabled type="checkbox"  aria-label="Checkbox for following text input"></td>';
                     else
@@ -334,9 +334,11 @@ if($func == 'saved'){
                     });
             });
         });
-        $("#btnSelectProduct").click(function(){
-
-        });
+        function selectProduct(productID){
+            $('input[="'+$productID+'"]').each(function() {
+                this.checked = true;
+            });
+        }
         async function jsOptimaze(data){
             $.ajax({url: "http://compress-images.com/?func=optimze&image="+data, success: function(result){
                 return result;
