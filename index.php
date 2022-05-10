@@ -146,10 +146,10 @@ if($func == 'saved'){
                     echo '<td><input name="optimze-check-input" disabled class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                 else 
                     echo '<td><input name="optimze-check-input" choose="'.$row['productID'].'" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
-                if($row1['apply']>0)
+                if($row1['optimalfile'] == '')
                     echo '<td><input class="apply-check-input disabled mt-0" type="checkbox" aria-label="Checkbox for following text input"></td>';
                 else 
-                    echo '<td><input class="apply-check-input mt-0" type="checkbox" value="'.$row1['imageID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    echo '<td><input class="apply-check-input mt-0" choose="'.$row['productID'].'" type="checkbox" value="'.$row1['imageID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '</tr>';
                 while($row1 = $sth1->fetch()){
                     echo '<tr class="table-active">';
@@ -168,10 +168,10 @@ if($func == 'saved'){
                         echo '<td><input name="optimze-check-input" disabled  class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     else 
                         echo '<td><input name="optimze-check-input" choose="'.$row['productID'].'" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
-                    if($row1['apply']>0)
+                    if($row1['optimalfile'] == '')
                         echo '<td><input class="apply-check-input mt-0" disabled type="checkbox"  aria-label="Checkbox for following text input"></td>';
                     else
-                        echo '<td><input class="apply-check-input mt-0" type="checkbox"   value="'.$row1['productID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
+                        echo '<td><input class="apply-check-input mt-0" choose="'.$row['productID'].'" type="checkbox"   value="'.$row1['productID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
                     echo '</tr>';
                 } //end while
             }//end if
