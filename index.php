@@ -364,7 +364,7 @@ function createProduct($productID_, $title_){
 }
 function updateProduct($productID_, $title_){
     global $conn;
-    $sql = "UPDATE `Products` SET `title`=:title WHERE = `productID`= :productID";
+    $sql = "UPDATE `Products` SET `title`=:title WHERE `productID`= :productID";
     $result = $conn->prepare($sql); 
 
     return $result->execute(array(':productID' => $productID_,':title'=>$title_));
