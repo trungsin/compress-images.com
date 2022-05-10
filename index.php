@@ -66,6 +66,7 @@ $localApi = $_ENV["LOCALAPI"];
 
 // Create connection
 $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
+$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
 
 // Check connection
 // if ($conn->connect_error) {
