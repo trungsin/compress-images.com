@@ -50,7 +50,7 @@ $products = $client->getProductManager()->findALL();
 //print_r($product);
 $pagination = $client->getProductManager()->paginate([
     // // filter your product
-     'limit' => 50,
+   //  'limit' => 50,
     // 'created_at_min' => '2015-04-25T16:15:47-04:00'
 ]);
 // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
@@ -129,7 +129,9 @@ if($func == 'saved'){
             if($numimage > 0){
                 $row1 = $sth1->fetch();
                 echo '<tr class="table-active">';
-                echo '<th rowspan="'.$numimage.'" scope="row"><a href="'.$rootShop.'/admin/products/'.$row['productID'].'">'.$row['title'].'</a></th>';
+                echo '<th rowspan="'.$numimage.'" scope="row"><a href="'.$rootShop.'/admin/products/'.$row['productID'].'">'.$row['title'].'</a><br>
+                <button type="button" id="btnSelectProduct" class="btn btn-primary">Choose this product</button>
+                </th>';
                 echo '<td><img style="width: 80px;"  src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
                 if($row1['optimalfile'] == '')
                     echo '<td><span id="'.$row1['imageID'].'"></td>';
@@ -331,6 +333,9 @@ if($func == 'saved'){
                         //$("#"+imgOpts[0]).html('<img style="width: 80px;" src="./node/optimalfile/'+ filename +'"/>');
                     });
             });
+        });
+        $("#btnSelectProduct").click(function(){
+
         });
         async function jsOptimaze(data){
             $.ajax({url: "http://compress-images.com/?func=optimze&image="+data, success: function(result){
