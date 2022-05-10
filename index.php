@@ -66,7 +66,6 @@ $localApi = $_ENV["LOCALAPI"];
 
 // Create connection
 $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
-$conn->setFetchMode(PDO:: FETCH_ASSOC);
 
 
 // Check connection
@@ -96,7 +95,8 @@ if($func == 'saved'){
     // Get range data for the current page
     $sql = "SELECT * FROM `Products` LIMIT {$paginationdb->offset}, {$paginationdb->limit}"; 
     $sth = $conn->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-    
+    $sth->setFetchMode(PDO:: FETCH_ASSOC);
+
     $result = $sth->execute();
     //$sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
     //$result = $conn->query($sql);
@@ -119,9 +119,11 @@ if($func == 'saved'){
     <tbody>
  <?php
     if ($count > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $result->fetch()) {
             $sql1 = "SELECT * FROM `product_images` WHERE `productID` ='".$row['productID']."'";
             $sth1 = $conn->prepare($sql1,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+            $sth1->setFetchMode(PDO:: FETCH_ASSOC);
+
             $result1 = $sth1->execute();
             $numimage  = $conn->query($sql1)->fetchColumn(); 
             if($numimage > 0){
