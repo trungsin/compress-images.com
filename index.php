@@ -364,7 +364,7 @@ function createProduct($productID_, $title_){
 }
 function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_imageID){
     global $conn;
-    $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES('$productID_','$originalfile_','$optimalfile_','$alttitle_','$_imageID')";
+    $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES(`$productID_`,`$originalfile_`,`$optimalfile_`,`$alttitle_`,`$_imageID`)";
     $result = $conn->prepare($sql); 
 
     return $result->execute();
