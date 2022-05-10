@@ -340,7 +340,7 @@ if($func == 'saved'){
 <?php
 function checkProductExist($productID_){
     global $conn;
-    $sql = "SELECT count(*) FROM `Products` WHERE `ProductID`='$productID_'";
+    $sql = "SELECT count(*) AS `total` FROM `Products` WHERE `ProductID`='$productID_'";
     $result = $conn->prepare($sql); 
     $result->execute();
     if ($result->fetchObject()->total > 0)       
@@ -349,7 +349,7 @@ function checkProductExist($productID_){
 }
 function checkImageExist($imageID_){
     global $conn;
-    $sql = "SELECT * FROM `product_images` WHERE `imageID`='$imageID_'";
+    $sql = "SELECT * AS `total` FROM `product_images` WHERE `imageID`='$imageID_'";
     $result = $conn->prepare($sql); 
     $result->execute();
     if ($result->fetchObject()->total > 0)  
