@@ -93,7 +93,7 @@ if($func == 'saved'){
         $page = 1; 
     // Get range data for the current page
     $sql = "SELECT * FROM `Products` LIMIT {$paginationdb->offset}, {$paginationdb->limit}"; 
-    $sth = $conn->prepare($sql);
+    $sth = $conn->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     
     $result = $sth->execute();
     //$sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
@@ -117,9 +117,9 @@ if($func == 'saved'){
     <tbody>
  <?php
     if ($count > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC,PDO::FETCH_ORI_NEXT)) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             $sql1 = "SELECT * FROM `product_images` WHERE `productID` ='".$row['productID']."'";
-            $sth1 = $conn->prepare($sql1);
+            $sth1 = $conn->prepare($sql1,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
             $result1 = $sth1->execute();
             $numimage  = $conn->query($sql1)->fetchColumn(); 
             if($numimage > 0){
@@ -145,7 +145,7 @@ if($func == 'saved'){
                 else 
                     echo '<td><input class="apply-check-input mt-0" type="checkbox" value="'.$row1['imageID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '</tr>';
-                while($row1 = $result1->fetch(PDO::FETCH_ASSOC,PDO::FETCH_ORI_NEXT)){
+                while($row1 = $result1->fetch(PDO::FETCH_ASSOC)){
                     echo '<tr class="table-active">';
                     //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
                     echo '<td><img style="width: 80px;" src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
