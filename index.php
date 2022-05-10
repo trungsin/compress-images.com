@@ -72,14 +72,32 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 //echo "Connected successfully";
+// Get count of data set first
+$sql = "SELECT count(*) FROM `Products`"; 
+$count = $conn->query($sql)->fetchColumn(); 
+
+// Initialize a Data Pagination with previous count number
+$paginationdb = new \yidas\data\Pagination([
+    'totalCount' => $count,
+    'pergpage' => 20,
+
+]);
+
+
+
 $func = $_GET['func'];
 if($func == 'saved'){ 
     if (isset($_GET['page']))
         $page = $_GET['page'];
     else 
         $page = 1; 
-    $sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
-    $result = $conn->query($sql);
+    // Get range data for the current page
+    $sql = "SELECT * FROM `Products` LIMIT {$paginationdb->offset}, {$paginationdb->limit}"; 
+    $sth = $conn->prepare($sql);
+    $sth->execute();
+    $result = $sth->fetchAll();
+    //$sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
+    //$result = $conn->query($sql);
     ?>
 <table class="table table-dark">
     <thead>
@@ -93,7 +111,7 @@ if($func == 'saved'){
         <th scope="col">Percent</th>
         <th scope="col">Alt Title</th>
         <th scope="col"><button type="button" id="btnOptimze" class="btn btn-primary">Optimazing</button></th>
-        <th scope="col">Apply</th>
+        <th scope="col"><button type="button" id="btnApply" class="btn btn-primary">Apply</button></th>
       </tr>
     </thead>
     <tbody>
@@ -121,7 +139,10 @@ if($func == 'saved'){
                     echo '<td><input name="optimze-check-input" disabled class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                 else 
                     echo '<td><input name="optimze-check-input" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
-                echo '<td><input class="apply-check-input mt-0" type="checkbox" data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                if($row1['apply']>0)
+                    echo '<td><input class="apply-check-input disabled mt-0" type="checkbox" aria-label="Checkbox for following text input"></td>';
+                else 
+                    echo '<td><input class="apply-check-input mt-0" type="checkbox" value="'.$row1['imageID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '</tr>';
                 while($row1 = $result1->fetch_assoc()){
                     echo '<tr class="table-active">';
@@ -140,7 +161,10 @@ if($func == 'saved'){
                         echo '<td><input name="optimze-check-input" disabled  class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
                     else 
                         echo '<td><input name="optimze-check-input" class="optimze-check-input mt-0" type="checkbox"  value="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
-                    echo '<td><input class="apply-check-input mt-0" type="checkbox"  data="'.$row1['imageID'].','.$row1['originalfile'].'" aria-label="Checkbox for following text input"></td>';
+                    if($row1['apply']>0)
+                        echo '<td><input class="apply-check-input mt-0" disabled type="checkbox"  aria-label="Checkbox for following text input"></td>';
+                    else
+                        echo '<td><input class="apply-check-input mt-0" type="checkbox"   value="'.$row1['productID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
                     echo '</tr>';
                 } //end while
             }//end if
@@ -152,22 +176,30 @@ if($func == 'saved'){
     $k = 8%$page;
     //if()
  ?> <tr>
-     <td colspan="10"><nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <?php //for($i=) ?>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">5</a></li>
-    <li class="page-item"><a class="page-link" href="#">6</a></li>
-    <li class="page-item"><a class="page-link" href="#">7</a></li>
-    <li class="page-item"><a class="page-link" href="#">8</a></li>
-    <li class="page-item"><a class="page-link" href="#">...</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav></td>
+    <td colspan="10">
+        <!-- <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <?php //for($i=) ?>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav> -->
+        <?php 
+        echo  \yidas\widgets\Pagination::widget([
+            'pagination' => $paginationdb,
+            'view' => 'simple',
+            ]);
+        ?>
+    </td>
     </tr> 
     </tbody>
   </table>
@@ -253,6 +285,7 @@ if($func == 'saved'){
                         $("#"+imgOpts[0]).html('<img style="width: 80px;" src="./node/optimalfile/'+ filename +'"/>');
                     });
             });
+            
             // $('input[name="optimze-check-input"]:checked').each(function() {
             //      console.log(this.value);
             // });
@@ -272,6 +305,39 @@ if($func == 'saved'){
             // //}
             //console.log(forEachLoop);
            
+        });
+        $("#btnApply").click(function(){
+            var selected = [];
+            $('input[name="apply-check-input"]:checked').each(function() {
+                selected.push(this.value); 
+                dataOpt =  this.value;
+                    //console.log(dataOpt);
+                imgOpts = dataOpt.split(",");
+                // $.ajax({
+                //     url: "compress-images.php/?image="+imgOpts[1]+"&ID="+imgOpts[0], 
+                //     success: function(result){
+                //         console.log("sss");
+                //         console.log(result);
+                //         },
+                //     beforeSend: function() {
+                //         $("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loader.gif" alt="Loading..."/></div>');
+                //     },
+                // });
+                $.ajax({
+                    url: "applyimage.php/?image="+imgOpts[1]+"&ID="+imgOpts[0], 
+                    type: 'GET',
+                    beforeSend: function( xhr ) {
+                        //$("#"+imgOpts[0]).html('<div id="loading"><img src="./images/ajax-loader.gif" alt="Loading..."/></div>');
+                    }
+                    })
+                    .done(function( data ) {
+                        console.log("sss");
+                        console.log(data);
+                        const obj = JSON.parse(data);
+                        var filename = obj.path_out_new.substr(obj.path_out_new.lastIndexOf("/")+1);
+                        //$("#"+imgOpts[0]).html('<img style="width: 80px;" src="./node/optimalfile/'+ filename +'"/>');
+                    });
+            });
         });
         async function jsOptimaze(data){
             $.ajax({url: "http://compress-images.com/?func=optimze&image="+data, success: function(result){
