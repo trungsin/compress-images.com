@@ -50,7 +50,7 @@ $products = $client->getProductManager()->findALL();
 //print_r($product);
 $pagination = $client->getProductManager()->paginate([
     // // filter your product
-     'limit' => 1000,
+     'limit' => 250,
     // 'created_at_min' => '2015-04-25T16:15:47-04:00'
 ]);
 // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
