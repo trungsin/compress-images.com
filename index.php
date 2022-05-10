@@ -362,10 +362,10 @@ function checkImageExist($imageID_){
 }
 function createProduct($productID_, $title_){
     global $conn;
-    $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES('$productID_','$title_')";
+    $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES(:productID,:title)";
     $result = $conn->prepare($sql); 
 
-    return $result->execute();
+    return $result->execute(array(':productID'=>$productID_,':title'=>$title_));
 }
 function updateProduct($productID_, $title_){
     global $conn;
