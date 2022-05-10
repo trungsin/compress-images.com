@@ -201,7 +201,7 @@ if($func == 'saved'){
         <?php 
         echo  \yidas\widgets\Pagination::widget([
             'pagination' => $paginationdb,
-            'view' => 'simple',
+            'view' => 'bootstrap',
             ]);
         ?>
     </td>
