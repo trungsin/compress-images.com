@@ -177,27 +177,8 @@ if($func == 'saved'){
         }//end while
     }//end if
 
-    $totalpage = $client->getProductManager()->count();
-    $k = 8%$page;
-    //if()
  ?> <tr>
     <td colspan="10">
-        <!-- <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <?php //for($i=) ?>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav> -->
         <?php 
         echo  \yidas\widgets\Pagination::widget([
             'pagination' => $paginationdb,
@@ -217,8 +198,9 @@ if($func == 'saved'){
             //print_r($product->getImages());
             $productID = $product->getId();
             if(checkProductExist($productID))
-                continue;
-            createProduct($productID,'title');
+                ;
+            else 
+                createProduct($productID,'title');
             $images = $product->getImages();
             foreach($images as $image){
                 // echo $image->getSrc()."<br>";
@@ -358,33 +340,34 @@ if($func == 'saved'){
 <?php
 function checkProductExist($productID_){
     global $conn;
-    $sql = "SELECT * FROM `Products` WHERE `ProductID`='$productID_'";
-    $result = $conn->query($sql); 
-    if ($result->num_rows > 0)       
+    $sql = "SELECT count(*) FROM `Products` WHERE `ProductID`='$productID_'";
+    $result = $conn->prepare($sql); 
+    $result->execute();
+    if ($result->fetchObject()->total > 0)       
         return true;
     return false;
 }
 function checkImageExist($imageID_){
     global $conn;
     $sql = "SELECT * FROM `product_images` WHERE `imageID`='$imageID_'";
-    $result = $conn->query($sql); 
-    if ($result->num_rows > 0)       
-        return true;
+    $result = $conn->prepare($sql); 
+    $result->execute();
+    if ($result->fetchObject()->total > 0)  
     return false;
 }
 function createProduct($productID_, $title_){
     global $conn;
     $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES('$productID_','$title_')";
-    $result = $conn->query($sql); 
+    $result = $conn->prepare($sql); 
 
-    return $result;
+    return $result->execute();
 }
 function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_imageID){
     global $conn;
     $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES('$productID_','$originalfile_','$optimalfile_','$alttitle_','$_imageID')";
-    $result = $conn->query($sql); 
+    $result = $conn->prepare($sql); 
 
-    return $result;
+    return $result->execute();
 }
 function Optimaze($data)
 {
