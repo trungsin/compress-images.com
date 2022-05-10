@@ -229,7 +229,7 @@ if($func == 'saved'){
         echo ($i++)."----------<br>";
         $products = $pagination->next();
     }
-    //echo $client->getProductManager()->count();
+    echo $client->getProductManager()->count();
     //$productCount =$client->getProductManager()->count();
 } elseif($func == "optimze") { //optimage image
     $image = $_GET['image'];
