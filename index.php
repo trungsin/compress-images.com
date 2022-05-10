@@ -343,7 +343,7 @@ if($func == 'saved'){
 
     });
     function selectProduct(productID){
-            $('input[="'+productID+'"]').each(function() {
+            $('input[choose="'+productID+'"]').each(function() {
                 this.checked = true;
             });
         }
