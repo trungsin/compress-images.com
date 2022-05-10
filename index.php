@@ -362,12 +362,12 @@ function createProduct($productID_, $title_){
 
     return $result->execute();
 }
-function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $_imageID){
+function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $imageID_){
     global $conn;
-    $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES(`$productID_`,`$originalfile_`,`$optimalfile_`,`$alttitle_`,`$_imageID`)";
+    $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES(:productID,:originalfile,:optimalfile,:alttitle,:imageID)";
     $result = $conn->prepare($sql); 
 
-    return $result->execute();
+    return $result->execute(array(':productID' => $productID_,':originalfile' =>$originalfile_, ':optimalfile'=>$optimalfile_,':alttitle'=>$alttitle_,':imageID'=>$imageID_));
 }
 function Optimaze($data)
 {
