@@ -97,7 +97,7 @@ if($func == 'saved'){
     $sth = $conn->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $sth->setFetchMode(PDO:: FETCH_ASSOC);
 
-    $result = $sth->execute();
+    $sth->execute();
     //$sql = "SELECT * FROM `Products` LIMIT ". (($page - 1)*10).", ".($page*10);  // Retrieve rows 6-15
     //$result = $conn->query($sql);
     ?>
@@ -119,15 +119,15 @@ if($func == 'saved'){
     <tbody>
  <?php
     if ($count > 0) {
-        while ($row = $result->fetch()) {
+        while ($row = $sth->fetch()) {
             $sql1 = "SELECT * FROM `product_images` WHERE `productID` ='".$row['productID']."'";
             $sth1 = $conn->prepare($sql1,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
             $sth1->setFetchMode(PDO:: FETCH_ASSOC);
 
-            $result1 = $sth1->execute();
+            $sth1->execute();
             $numimage  = $conn->query($sql1)->fetchColumn(); 
             if($numimage > 0){
-                $row1 = $result1->fetch();
+                $row1 = $sth1->fetch();
                 echo '<tr class="table-active">';
                 echo '<th rowspan="'.$numimage.'" scope="row"><a href="'.$rootShop.'/admin/products/'.$row['productID'].'">'.$row['title'].'</a></th>';
                 echo '<td><img style="width: 80px;"  src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
@@ -149,7 +149,7 @@ if($func == 'saved'){
                 else 
                     echo '<td><input class="apply-check-input mt-0" type="checkbox" value="'.$row1['imageID'].','.$row1['imageID'].','.$row1['optimalfile'].'" aria-label="Checkbox for following text input"></td>';
                 echo '</tr>';
-                while($row1 = $result1->fetch(PDO::FETCH_ASSOC)){
+                while($row1 = $sth1->fetch()){
                     echo '<tr class="table-active">';
                     //echo '<th rowspan="'.$numimage.'" scope="row">'.$row['title'].'</th>';
                     echo '<td><img style="width: 80px;" src="./node/originalfiles/'.$row1['originalfile'].'"/></td>';
