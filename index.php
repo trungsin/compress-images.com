@@ -198,7 +198,7 @@ if($func == 'saved'){
             //print_r($product->getImages());
             $productID = $product->getId();
             if(checkProductExist($productID))
-                ;
+                updateProduct($productID,$product->getTitle());
             else 
                 createProduct($productID,'title');
             $images = $product->getImages();
@@ -362,6 +362,14 @@ function createProduct($productID_, $title_){
 
     return $result->execute();
 }
+function updateProduct($productID_, $title_){
+    global $conn;
+    $sql = "UPDATE `Products` SET `title`=:title WHERE = `productID`= :productID";
+    $result = $conn->prepare($sql); 
+
+    return $result->execute(array(':productID' => $productID_,':title'=>$title_));
+}
+
 function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $imageID_){
     global $conn;
     $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES(:productID,:originalfile,:optimalfile,:alttitle,:imageID)";
@@ -388,4 +396,5 @@ function Optimaze($data)
 
     return $result;
 }
+
 ?>
