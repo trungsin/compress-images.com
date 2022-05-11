@@ -38,6 +38,6 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
  $row = $sth->fetch();
  //print_r($row)
  echo 'http://compress-images.com/node/optimalfile/'.$row['optimalfile'];
-//$newimage = $client->getProductImageManager()->create($productID,array ('src' => 'http://compress-images.com/node/optimalfile/'.$row['optimalfile']));
-//print_r($image);
+$newimage = $client->getProductImageManager()->create($productID,array ('src' => 'http://compress-images.com/node/originalfiles/'.$row['optimalfile']));
+print_r($image);
 ?>
