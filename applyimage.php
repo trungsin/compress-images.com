@@ -1,4 +1,9 @@
 <?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+ini_set('max_execution_time', '1800'); //300 seconds = 5 minutes
+
+error_reporting(E_ALL);
 require __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
