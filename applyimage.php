@@ -39,7 +39,7 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
  $sth = $conn->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
  $sth->setFetchMode(PDO:: FETCH_ASSOC);
 
- //$sth->execute();
+ $sth->execute();
  //$row = $sth->fetch();
  //print_r($row)
  while($row = $sth->fetch()) {
