@@ -14,12 +14,12 @@ $rootShop = "https://".$_ENV["NAMESHOP"];
 $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
     'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
 ]);
-$productID = $_GET['productID'];
-$imageID = $_GET['imageID'];
-$image = $client->getProductImageManager()->find($productID,$imageID);
+//$productID = $_GET['productID'];
+//$imageID = $_GET['imageID'];
+//$image = $client->getProductImageManager()->find($productID,$imageID);
 
 //print_r($product);
-$product = $client->getProductManager()->find($productID);
+//$product = $client->getProductManager()->find($productID);
 // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
 //print_r($currentProducts);
@@ -35,14 +35,20 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
 
 
  // Get range data for the current page
- $sql = "SELECT * FROM `product_images` where `imageID`=".$imageID; 
+ $sql = "SELECT * FROM `product_images` where `timeoptimal`=1 and `apply`=0 ` limit 0, 24";//imageID`=".$imageID; 
  $sth = $conn->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
  $sth->setFetchMode(PDO:: FETCH_ASSOC);
 
- $sth->execute();
- $row = $sth->fetch();
+ //$sth->execute();
+ //$row = $sth->fetch();
  //print_r($row)
- echo 'http://compress-images.com/node/optimalfile/'.$row['optimalfile'];
-$newimage = $client->getProductImageManager()->update($productID,$imageID,array ('src' => 'http://compress-images.com/node/originalfiles/'.$row['optimalfile']));
-print_r($image);
+ while($row = $sth->fetch()) {
+    echo 'http://compress-images.com/node/optimalfile/'.$row['optimalfile'];
+    $newimage = $client->getProductImageManager()->update($row['productID'],$row['imageID'],array ('src' => 'http://compress-images.com/node/originalfiles/'.$row['optimalfile']));
+    print_r($newimage);
+}
+
+//  echo 'http://compress-images.com/node/optimalfile/'.$row['optimalfile'];
+// $newimage = $client->getProductImageManager()->update($productID,$imageID,array ('src' => 'http://compress-images.com/node/originalfiles/'.$row['optimalfile']));
+// print_r($image);
 ?>
