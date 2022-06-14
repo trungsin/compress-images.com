@@ -46,9 +46,18 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
     echo 'http://compress-images.com/node/optimalfile/'.$row['optimalfile'];
     $newimage = $client->getProductImageManager()->update($row['productID'],$row['imageID'],array ('src' => 'http://compress-images.com/node/originalfiles/'.$row['optimalfile']));
     print_r($newimage);
+    updateProduct($row['imageID']);
 }
 
 //  echo 'http://compress-images.com/node/optimalfile/'.$row['optimalfile'];
 // $newimage = $client->getProductImageManager()->update($productID,$imageID,array ('src' => 'http://compress-images.com/node/originalfiles/'.$row['optimalfile']));
 // print_r($image);
+function updateProduct($imageID_){
+    global $conn;
+    $sql = "UPDATE `Products` SET `apply`=:apply WHERE `imageID`= :imageID";
+    $result = $conn->prepare($sql); 
+
+    return $result->execute(array(':imageID' => $imageID_,':apply'=>1));
+}
+
 ?>
