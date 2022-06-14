@@ -35,7 +35,7 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
 
 
  // Get range data for the current page
- $sql = "SELECT * FROM `product_images` where `timeoptimal`=1 and `apply`=0 ` limit 0, 24";//imageID`=".$imageID; 
+ $sql = "SELECT * FROM `product_images` where `timeoptimal`=1 and `apply`=0  limit 0, 24";//imageID`=".$imageID; 
  $sth = $conn->prepare($sql,array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
  $sth->setFetchMode(PDO:: FETCH_ASSOC);
 
