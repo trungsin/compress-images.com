@@ -54,7 +54,7 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
 // print_r($image);
 function updateProduct($imageID_){
     global $conn;
-    $sql = "UPDATE `Products` SET `apply`=:apply WHERE `imageID`= :imageID";
+    $sql = "UPDATE `product_images` SET `apply`=:apply WHERE `imageID`= :imageID";
     $result = $conn->prepare($sql); 
 
     return $result->execute(array(':imageID' => $imageID_,':apply'=>1));
