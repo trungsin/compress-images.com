@@ -81,7 +81,7 @@ $paginationdb = new \yidas\data\Pagination([
 $func = $_GET['func'];
 if($func == 'saved'){ 
     include("./inc/image_saved.php");
-<?php
+    
 } elseif($func == "request"){ //read data from shopify
     $products = $pagination->current();
     while ($pagination->hasNext()) {
