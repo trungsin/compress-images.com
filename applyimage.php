@@ -44,9 +44,12 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
  //print_r($row)
  while($row = $sth->fetch()) {
     echo 'http://compress-images.com/node/optimalfile/'.$row['optimalfile'];
-    $newimage = $client->getProductImageManager()->update($row['productID'],$row['imageID'],array ('src' => 'http://compress-images.com/node/originalfiles/'.$row['optimalfile']));
-    print_r($newimage);
-    updateProduct($row['imageID']);
+    if($row['originalsize'] > $row['optimalsize']) {
+        $newimage = $client->getProductImageManager()->update($row['productID'],$row['imageID'],array ('src' => 'http://compress-images.com/node/originalfiles/'.$row['optimalfile']));
+        print_r($newimage);
+        updateProduct($row['imageID']);    
+    }
+    
 }
 
 //  echo 'http://compress-images.com/node/optimalfile/'.$row['optimalfile'];
