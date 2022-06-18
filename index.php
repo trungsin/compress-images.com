@@ -94,6 +94,8 @@ if($func == 'saved'){
      $totalImage = $conn->query($sql)->fetchColumn(); 
      $sql = "SELECT count(*) FROM `product_images` where `apply`=1"; 
      $totalImageProccess = $conn->query($sql)->fetchColumn(); 
+     $sql = "SELECT count(*) FROM `product_images` where `apply`=2"; 
+     $totalImageSkip = $conn->query($sql)->fetchColumn(); 
      include("./inc/dashboard.php");
      include("./inc/footer.php");    
 }
