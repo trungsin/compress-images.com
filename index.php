@@ -68,19 +68,19 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
 // }
 //echo "Connected successfully";
 // Get count of data set first
-$sql = "SELECT count(*) FROM `Products`"; 
-$count = $conn->query($sql)->fetchColumn(); 
-
-// Initialize a Data Pagination with previous count number
-$paginationdb = new \yidas\data\Pagination([
-    'totalCount' => $count,
-    'pergpage' => 20,
-
-]);
 $func ="";
 if(isset$_GET['func'])
     $func = $_GET['func'];
 if($func == 'saved'){ 
+    $sql = "SELECT count(*) FROM `Products`"; 
+    $count = $conn->query($sql)->fetchColumn(); 
+
+    // Initialize a Data Pagination with previous count number
+    $paginationdb = new \yidas\data\Pagination([
+        'totalCount' => $count,
+        'pergpage' => 20,
+
+    ]);
     include("./inc/image_saved.php");
 } elseif($func == "request"){ //read data from shopify
     include("./inc/request_shopfify.php");
