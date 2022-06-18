@@ -32,25 +32,7 @@ error_reporting(E_ALL);
 require __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-//$credential = new Slince\Shopify\PublicAppCredential('Access Token');
-// Or Private App
-$credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], '617f6659065b53e31eacb54a6686fd5e');
-$rootShop = "https://".$_ENV["NAMESHOP"];
-$client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
-    'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
-]);
-$products = $client->getProductManager()->findALL();
 
-//print_r($product);
-$pagination = $client->getProductManager()->paginate([
-    // // filter your product
-     'limit' => 250,
-    // 'created_at_min' => '2015-04-25T16:15:47-04:00'
-]);
-// $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
-
-$pagination->current(); //current page
-//print_r($currentProducts);
 $i=1;
 $servername = $_ENV["MYSQLSERVER"];
 $username = $_ENV["MYSQLUSER"];
@@ -69,7 +51,7 @@ $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
 //echo "Connected successfully";
 // Get count of data set first
 $func ="";
-if(isset$_GET['func'])
+if(isset($_GET['func']))
     $func = $_GET['func'];
 if($func == 'saved'){ 
     $sql = "SELECT count(*) FROM `Products`"; 
@@ -83,6 +65,25 @@ if($func == 'saved'){
     ]);
     include("./inc/image_saved.php");
 } elseif($func == "request"){ //read data from shopify
+    //$credential = new Slince\Shopify\PublicAppCredential('Access Token');
+    // Or Private App
+    $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], '617f6659065b53e31eacb54a6686fd5e');
+    $rootShop = "https://".$_ENV["NAMESHOP"];
+    $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
+        'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
+    ]);
+    $products = $client->getProductManager()->findALL();
+
+    //print_r($product);
+    $pagination = $client->getProductManager()->paginate([
+        // // filter your product
+         'limit' => 250,
+        // 'created_at_min' => '2015-04-25T16:15:47-04:00'
+    ]);
+    // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
+
+    $pagination->current(); //current page
+    //print_r($currentProducts);
     include("./inc/request_shopfify.php");
 } elseif($func == "optimze") { //optimage image
     $image = $_GET['image'];
