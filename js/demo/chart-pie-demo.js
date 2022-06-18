@@ -7,7 +7,7 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["SKIP", "NOT YET", "COMPRESSED"],
+    labels: ["NOT YET", "COMPRESSED", "SKIP"],
     datasets: [{
       data: [notyet, percentProccess, percentSkip],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
