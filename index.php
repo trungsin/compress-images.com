@@ -103,7 +103,6 @@ if($func == 'saved'){
      $original = $conn->query($sql)->fetchColumn(); 
      $optimal = $conn->query($sql)->fetchColumn(1);
      $total = 100 - ($optimal/$original)*100;
-     $productShopifyCount =$client->getProductManager()->count();
      include("./inc/dashboard.php");
      include("./inc/footer.php");    
 }
