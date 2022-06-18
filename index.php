@@ -88,7 +88,7 @@ if($func == 'saved'){
     $image = $_GET['image'];
     print_r(Optimaze($image));
 } else{
-    include("./inc/leftbar.php")
+    include("./inc/leftbar.php");
     include("./inc/dashboard.php");
     include("./inc/footer.php");    
 }
