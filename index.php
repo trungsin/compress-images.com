@@ -77,8 +77,9 @@ $paginationdb = new \yidas\data\Pagination([
     'pergpage' => 20,
 
 ]);
-
-$func = $_GET['func'];
+$func ="";
+if(isset$_GET['func'])
+    $func = $_GET['func'];
 if($func == 'saved'){ 
     include("./inc/image_saved.php");
 } elseif($func == "request"){ //read data from shopify
