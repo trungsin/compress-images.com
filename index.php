@@ -96,10 +96,14 @@ if($func == 'saved'){
      $totalImageProccess = $conn->query($sql)->fetchColumn(); 
      $sql = "SELECT count(*) FROM `product_images` where `apply`=2"; 
      $totalImageSkip = $conn->query($sql)->fetchColumn(); 
+     $percentTotalProccess = (($totalImageProccess + $totalImageSkip)/$totalImage) * 100;
+     $percentSkip = ($totalImageSkip/$totalImage) * 100;
+     $percentProccess = ($totalImageProccess/$totalImage) * 100;
      $sql = "SELECT sum(originalsize) as original, sum(optimalsize) as optimal FROM `product_images` where `apply`=1"; 
      $original = $conn->query($sql)->fetchColumn(); 
      $optimal = $conn->query($sql)->fetchColumn(1);
      $total = 100 - ($optimal/$original)*100;
+     $productShopifyCount =$client->getProductManager()->count();
      include("./inc/dashboard.php");
      include("./inc/footer.php");    
 }
