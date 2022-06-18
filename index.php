@@ -81,14 +81,15 @@ $paginationdb = new \yidas\data\Pagination([
 $func = $_GET['func'];
 if($func == 'saved'){ 
     include("./inc/image_saved.php");
-
 } elseif($func == "request"){ //read data from shopify
-    include("./inc/request_shofity.php")
+    include("./inc/request_shopfify.php");
 } elseif($func == "optimze") { //optimage image
     $image = $_GET['image'];
     print_r(Optimaze($image));
-} elseif($func == "") { //apply optimzed image to product shopify
-
+} else{
+    include("./inc/leftbar.php")
+    include("./inc/dashboard.php");
+    include("./inc/footer.php");    
 }
 
 ?>
