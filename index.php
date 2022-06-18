@@ -96,6 +96,10 @@ if($func == 'saved'){
      $totalImageProccess = $conn->query($sql)->fetchColumn(); 
      $sql = "SELECT count(*) FROM `product_images` where `apply`=2"; 
      $totalImageSkip = $conn->query($sql)->fetchColumn(); 
+     $sql = "SELECT sum(originalsize) as original, sum(optimalsize) as optimal FROM `product_images` where `apply`=1"; 
+     $original = $conn->query($sql)->fetchColumn(); 
+     $optimal = $conn->query($sql)->fetchColumn(1);
+     $total = ($optimal/$original)*100;
      include("./inc/dashboard.php");
      include("./inc/footer.php");    
 }
