@@ -1,3 +1,4 @@
+?>
 <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -338,3 +339,4 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+<?php
