@@ -63,7 +63,9 @@ if($func == 'saved'){
         'pergpage' => 20,
 
     ]);
+    include("./inc/leftbar.php");
     include("./inc/image_saved.php");
+    include("./inc/footer.php");
 } elseif($func == "request"){ //read data from shopify
     //$credential = new Slince\Shopify\PublicAppCredential('Access Token');
     // Or Private App
@@ -92,17 +94,22 @@ if($func == 'saved'){
      include("./inc/leftbar.php");
      $sql = "SELECT count(*) FROM `product_images`"; 
      $totalImage = $conn->query($sql)->fetchColumn(); 
+
      $sql = "SELECT count(*) FROM `product_images` where `apply`=1"; 
      $totalImageProccess = $conn->query($sql)->fetchColumn(); 
+     
      $sql = "SELECT count(*) FROM `product_images` where `apply`=2"; 
      $totalImageSkip = $conn->query($sql)->fetchColumn(); 
+     
      $percentTotalProccess = (($totalImageProccess + $totalImageSkip)/$totalImage) * 100;
      $percentSkip = ($totalImageSkip/$totalImage) * 100;
      $percentProccess = ($totalImageProccess/$totalImage) * 100;
+     
      $sql = "SELECT sum(originalsize) as original, sum(optimalsize) as optimal FROM `product_images` where `apply`=1"; 
      $original = $conn->query($sql)->fetchColumn(); 
      $optimal = $conn->query($sql)->fetchColumn(1);
      $total = 100 - ($optimal/$original)*100;
+     
      include("./inc/dashboard.php");
      include("./inc/footer.php");    
 }
