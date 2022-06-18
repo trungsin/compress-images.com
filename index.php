@@ -90,6 +90,9 @@ if($func == 'saved'){
     print_r(Optimaze($image));
 } else{
      include("./inc/leftbar.php");
+     $sql = "SELECT count(*) FROM `product_images`"; 
+     $totalImage = $conn->query($sql)->fetchColumn(); 
+
      include("./inc/dashboard.php");
      include("./inc/footer.php");    
 }
