@@ -161,7 +161,7 @@
                                 </div>
                                 <!-- Card Body -->
                                 <script type="text/javascript">
-                                	const notyet = 100 - <?php echo $percentSkip;?>;
+                                	const notyet = 100 - <?php echo $percentTotalProccess;?>;
                                 	const percentSkip = <?php echo $percentSkip;?>;
                                 	const percentProccess = <?php echo $percentProccess;?>;
                                 </script>
