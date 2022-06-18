@@ -53,7 +53,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Task proccess
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Size compressed
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -71,7 +71,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-pause fa-2x text-gray-300"></i>
+                                            <i class="fas fa-tasks fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
