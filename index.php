@@ -92,7 +92,8 @@ if($func == 'saved'){
      include("./inc/leftbar.php");
      $sql = "SELECT count(*) FROM `product_images`"; 
      $totalImage = $conn->query($sql)->fetchColumn(); 
-
+     $sql = "SELECT count(*) FROM `product_images` where `apply`=1"; 
+     $totalImageProccess = $conn->query($sql)->fetchColumn(); 
      include("./inc/dashboard.php");
      include("./inc/footer.php");    
 }
