@@ -64,7 +64,7 @@
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: <?php echo $total;?>%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: <?php echo round($total,1);?>%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -110,19 +110,19 @@
                                 </div>
                                 <div class="card-body">
                                     <h4 class="small font-weight-bold">Skip Image <span
-                                            class="float-right"><?php echo $percentSkip; ?>%</span></h4>
+                                            class="float-right"><?php echo round($percentSkip,1); ?>%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $percentSkip; ?>%"
                                             aria-valuenow="<?php echo $percentSkip; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <h4 class="small font-weight-bold">Process Images <span
-                                            class="float-right"><?php echo $percentProccess;?>%</span></h4>
+                                            class="float-right"><?php echo round($percentProccess,1);?>%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar" role="progressbar" style="width: <?php echo $percentProccess;?>%"
                                             aria-valuenow="<?php echo $percentProccess;?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <h4 class="small font-weight-bold">Total proccess(COMPRESSED and SKIP) <span
-                                            class="float-right"><?php echo $percentTotalProccess?>%</span></h4>
+                                            class="float-right"><?php echo round($percentTotalProccess,1); ?>%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo $percentTotalProccess?>%"
                                             aria-valuenow="<?php echo $percentTotalProccess?>" aria-valuemin="0" aria-valuemax="100"></div>
