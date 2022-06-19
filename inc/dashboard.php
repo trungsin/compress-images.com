@@ -58,7 +58,7 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    	<?php echo $total; ?>
+                                                    	<?php echo $total; ?>%
                                                     </div>
                                                 </div>
                                                 <div class="col">
@@ -112,19 +112,19 @@
                                     <h4 class="small font-weight-bold">Skip Image <span
                                             class="float-right"><?php echo $percentSkip; ?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $percentSkip; ?>%"
                                             aria-valuenow="<?php echo $percentSkip; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <h4 class="small font-weight-bold">Process Images <span
                                             class="float-right"><?php echo $percentProccess;?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
+                                        <div class="progress-bar" role="progressbar" style="width: <?php echo $percentProccess;?>%"
                                             aria-valuenow="<?php echo $percentProccess;?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <h4 class="small font-weight-bold">Total proccess(COMPRESSED and SKIP) <span
                                             class="float-right"><?php echo $percentTotalProccess?>%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo $percentTotalProccess?>%"
                                             aria-valuenow="<?php echo $percentTotalProccess?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <h4 class="small font-weight-bold">Total image crawl from shopify <span
