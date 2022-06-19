@@ -6,9 +6,9 @@
             //print_r($product->getImages());
             $productID = $product->getId();
             if(checkProductExist($productID))
-                updateProduct($productID,$product->getTitle());
+                updateProduct($productID,$product->getTitle(),date("Y-m-d H:i:s"));
             else 
-                createProduct($productID,$product->getTitle());
+                createProduct($productID,$product->getTitle(),date("Y-m-d H:i:s"),date("Y-m-d H:i:s"));
             $images = $product->getImages();
             foreach($images as $image){
                 // echo $image->getSrc()."<br>";
@@ -36,5 +36,5 @@
         $products = $pagination->next();
     }
     echo $client->getProductManager()->count();
-    //$productCount =$client->getProductManager()->count();
+    //
 ?>

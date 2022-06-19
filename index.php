@@ -44,12 +44,7 @@ $localApi = $_ENV["LOCALAPI"];
 $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);
 
 
-// Check connection
-// if ($conn->connect_error) {
-//   die("Connection failed: " . $conn->connect_error);
-// }
-//echo "Connected successfully";
-// Get count of data set first
+include("./inc/function.php");
 $func ="";
 if(isset($_GET['func']))
     $func = $_GET['func'];
@@ -244,63 +239,3 @@ if($func == 'saved'){
 </body>
 
 </html>
-<?php
-function checkProductExist($productID_){
-    global $conn;
-    $sql = "SELECT count(*) AS `total` FROM `Products` WHERE `ProductID`='$productID_'";
-    $result = $conn->prepare($sql); 
-    $result->execute();
-    if ($result->fetchObject()->total > 0)       
-        return true;
-    return false;
-}
-function checkImageExist($imageID_){
-    global $conn;
-    $sql = "SELECT count(*) AS `total` FROM `product_images` WHERE `imageID`='$imageID_'";
-    $result = $conn->prepare($sql); 
-    $result->execute();
-    return $result->fetchObject()->total;
-}
-function createProduct($productID_, $title_){
-    global $conn;
-    $sql = "INSERT INTO `Products`(`productID`,`title`) VALUES(:productID,:title)";
-    $result = $conn->prepare($sql); 
-
-    return $result->execute(array(':productID'=>$productID_,':title'=>$title_));
-}
-function updateProduct($productID_, $title_){
-    global $conn;
-    $sql = "UPDATE `Products` SET `title`=:title WHERE `productID`= :productID";
-    $result = $conn->prepare($sql); 
-
-    return $result->execute(array(':productID' => $productID_,':title'=>$title_));
-}
-
-function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $imageID_){
-    global $conn;
-    $sql = "INSERT INTO `product_images`(`productID`,`originalfile`,`optimalfile`,`alttitle`,`imageID`) VALUES(:productID,:originalfile,:optimalfile,:alttitle,:imageID)";
-    $result = $conn->prepare($sql); 
-
-    return $result->execute(array(':productID' => $productID_,':originalfile' =>$originalfile_, ':optimalfile'=>$optimalfile_,':alttitle'=>$alttitle_,':imageID'=>$imageID_));
-}
-function Optimaze($data)
-{
-    global $localApi;
-    $curl = curl_init();
-    $url = "http://".$localApi."/optimze/".$data;
-
-    // Optional Authentication:
-//    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-//    curl_setopt($curl, CURLOPT_USERPWD, "username:password");
-
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-    $result = curl_exec($curl);
-
-    curl_close($curl);
-
-    return $result;
-}
-
-?>
