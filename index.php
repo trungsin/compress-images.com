@@ -39,6 +39,7 @@ $username = $_ENV["MYSQLUSER"];
 $password = $_ENV["MYSQLPASS"];
 $db = $_ENV["MYSQLDB"];
 $localApi = $_ENV["LOCALAPI"];
+$nameStore = $_ENV["NAMESTORE"];
 
 // Create connection
 $conn = new PDO("mysql:host=".$servername.";dbname=".$db, $username, $password);

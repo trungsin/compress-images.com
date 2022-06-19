@@ -16,7 +16,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                <a href="/?func=saved">Total Image  Crawl From Memory</a></div>
+                                                <a href="/?func=saved">Total Image  Crawl From <?php echo $nameStore; ?></a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalImage;?></div>
                                         </div>
                                         <div class="col-auto">
@@ -106,7 +106,7 @@
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Result optimze image for Memory store</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Result optimze image for <?php echo $nameStore; ?> store</h6>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="small font-weight-bold">Skip Image <span
