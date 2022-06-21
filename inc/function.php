@@ -41,9 +41,9 @@ function Optimaze($tini)
 {
     global $localApi;
     $curl = curl_init();
-    $url = "http://".$localApi."/optimze_tini";
+    $url = "http://".$localApi."/optimze";
     if($tini)
-        $url = "http://".$localApi."/optimze";
+        $url = "http://".$localApi."/optimze_tini";
 
     // Optional Authentication:
 //    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
