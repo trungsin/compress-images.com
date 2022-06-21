@@ -87,7 +87,7 @@ if($func == 'saved'){
     $result = "a";
     while($result === "null"){
         $result= Optimaze();
-        print_r($result);
+        echo $result.'<br>';
             
     }
     
