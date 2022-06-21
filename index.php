@@ -85,7 +85,7 @@ if($func == 'saved'){
     include("./inc/request_shopfify.php");
 } elseif($func == "optimze") { //optimage image
     $result = "a";
-    while($result === "null"){
+    while($result !== "null"){
         $result= Optimaze();
         echo $result.'<br>';
             
