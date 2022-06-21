@@ -84,8 +84,13 @@ if($func == 'saved'){
     //print_r($currentProducts);
     include("./inc/request_shopfify.php");
 } elseif($func == "optimze") { //optimage image
-    $image = $_GET['image'];
-    print_r(Optimaze($image));
+    $result = "a";
+    while($result === "null"){
+        $result= Optimaze();
+        print_r($result);
+            
+    }
+    
 } else{
      include("./inc/leftbar.php");
      $sql = "SELECT count(*) FROM `product_images`"; 
