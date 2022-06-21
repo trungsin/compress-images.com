@@ -86,12 +86,20 @@ if($func == 'saved'){
 } elseif($func == "optimze") { //optimage image
     $result = "a";
     while($result !== "null"){
-        $result= Optimaze();
+        $result= Optimaze(false);
         echo $result.'<br>';
             
     }
     
-} else{
+} elseif($func == "tinify") { //optimage image
+    $result = "a";
+    while($result !== "null"){
+        $result= Optimaze(true);
+        echo $result.'<br>';
+            
+    }
+    
+} else {
      include("./inc/leftbar.php");
      $sql = "SELECT count(*) FROM `product_images`"; 
      $totalImage = $conn->query($sql)->fetchColumn(); 

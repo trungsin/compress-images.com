@@ -37,11 +37,13 @@ function createImage($productID_,$originalfile_, $optimalfile_, $alttitle_, $ima
 
     return $result->execute(array(':productID' => $productID_,':originalfile' =>$originalfile_, ':optimalfile'=>$optimalfile_,':alttitle'=>$alttitle_,':imageID'=>$imageID_));
 }
-function Optimaze()
+function Optimaze($tini)
 {
     global $localApi;
     $curl = curl_init();
-    $url = "http://".$localApi."/optimze";
+    $url = "http://".$localApi."/optimze_tini";
+    if($tini)
+        $url = "http://".$localApi."/optimze";
 
     // Optional Authentication:
 //    curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
