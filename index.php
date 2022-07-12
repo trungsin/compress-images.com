@@ -111,11 +111,11 @@ if($func == 'saved'){
         ]);
         //$order = $client->getOrderManager()->find($orderID);
 
-        $order = $client->getOrderManager()->findAll(['name'=>'#'.$orderID,]);//.$orderID.".1"]);
-        $fulfills = $order[0]->getFulfillments();
+        $order = $client->getOrderManager()->findAll(['name'=>'#$orderID',]);//.$orderID.".1"]);
+       // $fulfills = $order[0]->getFulfillments();
         //$fulfills = $order->getFulfillments();
         //print_r($order);
-        print_r($fulfills);
+        print_r($order);
     
         //print_r($currentProducts);
         //include("./inc/request_shopfify.php");
