@@ -111,7 +111,7 @@ if($func == 'saved'){
         ]);
         //$order = $client->getOrderManager()->find($orderID);
         $strOrder = '#'.$orderID;
-        $query = array('name' => $strOrder, );
+        $query = array('name' => $strOrder, "status" => "any",);
         $order = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
        // $fulfills = $order[0]->getFulfillments();
         //$fulfills = $order->getFulfillments();
