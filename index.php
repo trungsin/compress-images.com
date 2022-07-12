@@ -113,10 +113,10 @@ if($func == 'saved'){
         $strOrder = '#'.$orderID;
         $query = array('name' => $strOrder, "status" => "any",);
         $order = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
-       // $fulfills = $order[0]->getFulfillments();
+        $fulfills = $order[0]->getFulfillments();
         //$fulfills = $order->getFulfillments();
         //print_r($order);
-        print_r($order);
+        print_r($fulfills);
     
         //print_r($currentProducts);
         //include("./inc/request_shopfify.php");
