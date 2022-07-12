@@ -133,7 +133,7 @@ if($func == 'saved'){
             // print_r($order[0]);
             // echo "--------";
             // print_r($fulfills);
-            header('Content-Type: application/json; charset=utf-8');
+            //header('Content-Type: application/json; charset=utf-8');
             echo json_encode($data);
         
         //print_r($currentProducts);
