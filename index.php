@@ -112,15 +112,34 @@ if($func == 'saved'){
         //$order = $client->getOrderManager()->find($orderID);
         $strOrder = '#'.$orderID;
         $query = array('name' => $strOrder, "status" => "any",);
-        $order = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
-        $fulfills = $order[0]->getFulfillments();
-        //$fulfills = $order->getFulfillments();
-        print_r($order[0]);
-        echo "--------";
-        print_r($fulfills);
-    
+        $orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
+        $data = array();
+        if(count($orders) > 0){
+            $order = $orders[0];
+            $data['email'] = $order->getEmail();
+            $data['status'] = $order->getFinancialStatus();
+            $data['name'] = $order->getBillingAddress()->getName();
+            $data['orderStatusUrl'] = $order->getOrderStatusUrl();
+            $fulfills = $order->getFulfillments();
+            if(count($fulfills) > 0){
+                $data['tracking'] = true;
+                $data['trackingCompany'] = $fulfills[0]->getTrackingCompany();
+                $data['trackingCompany'] = $fulfills[0]->getTrackingCompany();
+                $data['trackingNumber'] = $fulfills[0]->getTrackingNumber();
+                $data['trackingurl'] = $fulfills[0]->getTrackingUrl();
+            } else {
+                $data['tracking']=false;
+            }
+            // print_r($order[0]);
+            // echo "--------";
+            // print_r($fulfills);
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($data);
+        
         //print_r($currentProducts);
         //include("./inc/request_shopfify.php");
+        }
+        
     }
 } else {
      include("./inc/leftbar.php");
