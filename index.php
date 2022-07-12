@@ -65,7 +65,7 @@ if($func == 'saved'){
 } elseif($func == "request"){ //read data from shopify
     //$credential = new Slince\Shopify\PublicAppCredential('Access Token');
     // Or Private App
-    $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], '617f6659065b53e31eacb54a6686fd5e');
+    $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], $_ENV['SHAREDSECRET']);
     
     $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
         'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
@@ -99,6 +99,24 @@ if($func == 'saved'){
             
     }
     
+} elseif($func =="odertracking"){
+    //$credential = new Slince\Shopify\PublicAppCredential('Access Token');
+    // Or Private App
+    if(isset($_GET['orderid'])){
+        $orderID = $_GET['orderid'];
+        $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], $_ENV['SHAREDSECRET']);
+        
+        $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
+            'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
+        ]);
+
+        $order = $client->getProductManager()->find($orderID);
+
+        print_r($order);
+    
+        //print_r($currentProducts);
+        //include("./inc/request_shopfify.php");
+    }
 } else {
      include("./inc/leftbar.php");
      $sql = "SELECT count(*) FROM `product_images`"; 
@@ -113,6 +131,9 @@ if($func == 'saved'){
      $percentTotalProccess = (($totalImageProccess + $totalImageSkip)/$totalImage) * 100;
      $percentSkip = ($totalImageSkip/$totalImage) * 100;
      $percentProccess = ($totalImageProccess/$totalImage) * 100;
+     
+     $sql = "SELECT count(*) FROM `product_images` where `apply`=3 or `apply`=9"; 
+     $totalImageError = $conn->query($sql)->fetchColumn(); 
      
      $sql = "SELECT sum(originalsize) as original, sum(optimalsize) as optimal FROM `product_images` where `apply`=1"; 
      $original = $conn->query($sql)->fetchColumn(); 
