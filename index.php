@@ -115,7 +115,8 @@ if($func == 'saved'){
         $order = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
         $fulfills = $order[0]->getFulfillments();
         //$fulfills = $order->getFulfillments();
-        //print_r($order);
+        print_r($order[0]);
+        echo "--------";
         print_r($fulfills);
     
         //print_r($currentProducts);
