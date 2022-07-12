@@ -110,7 +110,7 @@ if($func == 'saved'){
             'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
         ]);
 
-        $order = $client->getProductManager()->find($orderID);
+        $order = $client->getOrderManager()->find($orderID);
 
         print_r($order);
     
