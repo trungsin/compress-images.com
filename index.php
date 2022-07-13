@@ -104,6 +104,7 @@ if($func == 'saved'){
                 $data['trackingCompany'] = $fulfills[0]->getTrackingCompany();
                 $data['trackingNumber'] = $fulfills[0]->getTrackingNumber();
                 $data['trackingurl'] = $fulfills[0]->getTrackingUrl();
+                $data['trackingStatus'] = $fulfills[0]->getStatus();
             } else {
                 $data['tracking']=false;
             }
