@@ -104,13 +104,13 @@ if($func == 'saved'){
                 $data['trackingCompany'] = $fulfills[0]->getTrackingCompany();
                 $data['trackingNumber'] = $fulfills[0]->getTrackingNumber();
                 $data['trackingurl'] = $fulfills[0]->getTrackingUrl();
-                $data['trackingStatus'] = $fulfills[0]->getStatus();
+                $data['shipmentStatus'] = $fulfills[0]->getShipmentStatus();
             } else {
                 $data['tracking']=false;
             }
             // print_r($order[0]);
             // echo "--------";
-             print_r($fulfills);
+            // print_r($fulfills);
             header('Content-Type: application/json; charset=utf-8');
             header("Access-Control-Allow-Origin: *"); 
             header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
