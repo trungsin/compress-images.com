@@ -110,7 +110,7 @@ if($func == 'saved'){
             }
             // print_r($order[0]);
             // echo "--------";
-            // print_r($fulfills);
+             print_r($fulfills);
             header('Content-Type: application/json; charset=utf-8');
             header("Access-Control-Allow-Origin: *"); 
             header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
