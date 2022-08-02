@@ -1,10 +1,10 @@
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Memory</h1>
+<h1 class="h3 mb-2 text-gray-800"><?php echo $nameStore;?></h1>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Detail Image Crarl from Memory</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Detail Order from <?php echo $nameStore;?></h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -17,7 +17,6 @@
                 <th scope="col">Tracking Company</th>
                 <th scope="col">Tracking Number</th>
                 <th scope="col">Tracking url</th>
-                <th scope="col">Shipment Status</th>
               </tr>
             </thead>
             <tbody>
@@ -35,13 +34,12 @@
                     $fulfills = $order->getFulfillments();
                     if(count($fulfills) > 0){
                         echo '<td>'.$fulfills[0]->getTrackingCompany().'"></td>';
-                        echo '<td>'.$fulfills[0]->getTrackingNumber().'"></td>';
-                        echo '<td>'.$fulfills[0]->getTrackingUrl().'"></td>';
-                        echo '<td>'.$fulfills[0]->getShipmentStatus().'"></td>';
+                        echo '<td><a href="'.$fulfills[0]->getTrackingUrl().'" target="_blank">'.$fulfills[0]->getTrackingNumber().'"></a></td>';
+                        echo '<td>'.$fulfills[0]->getShipmentStatus().'</td>';
 
                     }
                     else 
-                        echo '<td colspan="4">Not Yet</td>';
+                        echo '<td colspan="3">Not Yet</td>';
                     echo '</tr>';
                 }
                 echo ($i++)."----------<br>";
