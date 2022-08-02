@@ -121,6 +121,27 @@ if($func == 'saved'){
         }
         
     }
+} elseif($func =="tracking"){
+    //$credential = new Slince\Shopify\PublicAppCredential('Access Token');
+    // Or Private App
+    $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], $_ENV['SHAREDSECRET']);
+    
+    $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
+        'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
+    ]);
+    $orders = $client->getOrderManager()->findALL();
+
+    //print_r($product);
+    $pagination = $client->getOrderManager()->paginate([
+        // // filter your product
+         'limit' => 50,
+        // 'created_at_min' => '2015-04-25T16:15:47-04:00'
+    ]);
+    // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
+
+    $pagination->current(); //current page
+    //print_r($currentProducts);
+    include("./inc/request_tracking_order.php");
 } else {
      include("./inc/leftbar.php");
      $sql = "SELECT count(*) FROM `product_images`"; 
