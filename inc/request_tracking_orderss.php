@@ -25,9 +25,12 @@
            $orders = $pagination->current();
             while ($pagination->hasNext()) {
                 foreach($orders as $order){
+                    $nameShip = "not yet";
+                    if($order->getBillingAddress() != null)
+                        $nameShip = $order->getBillingAddress()->getName();
                     echo '<tr class="table-active">';
                     echo '<th>'.$order->getName().'</th>';
-                    echo '<td>'.$order->getBillingAddress()->getName().'</td>';
+                    echo '<td>'.$nameShip.'</td>';
                     echo '<td>'.$order->getFinancialStatus().'</td>';
                     $fulfills = $order->getFulfillments();
                     if(count($fulfills) > 0){
