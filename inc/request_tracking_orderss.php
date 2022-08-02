@@ -26,7 +26,7 @@
             while ($pagination->hasNext()) {
                 foreach($orders as $order){
                     echo '<tr class="table-active">';
-                    echo '<th rowspan="'.$numimage.'" scope="row">'.$order->getName().'</th>';
+                    echo '<th>'.$order->getName().'</th>';
                     echo '<td>'.$order->getBillingAddress()->getName().'</td>';
                     echo '<td>'.$order->getFinancialStatus().'</td>';
                     $fulfills = $order->getFulfillments();
