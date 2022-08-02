@@ -129,7 +129,9 @@ if($func == 'saved'){
     $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
         'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
     ]);
-    $orders = $client->getOrderManager()->findALL();
+    $query = array("status" => "any",);
+    $orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
+    
 
     //print_r($product);
     $pagination = $client->getOrderManager()->paginate([
