@@ -33,7 +33,7 @@
                     echo '<td>'.$order->getFinancialStatus().'</td>';
                     $fulfills = $order->getFulfillments();
                     if(count($fulfills) > 0){
-                        echo '<td>'.$fulfills[0]->getTrackingCompany().'"></td>';
+                        echo '<td>'.$fulfills[0]->getTrackingCompany().'</td>';
                         echo '<td><a href="'.$fulfills[0]->getTrackingUrl().'" target="_blank">'.$fulfills[0]->getTrackingNumber().'</a></td>';
                         echo '<td>'.$fulfills[0]->getShipmentStatus().'</td>';
 
