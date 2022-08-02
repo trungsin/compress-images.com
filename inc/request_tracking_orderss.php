@@ -8,7 +8,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-        <table class="table table-bordered" style="border-color: aqua;">
+        <table class="table table-bordered"  border="1" style="border-color: aqua;">
             <thead>
               <tr>
                 <th scope="col" style="width: 300px;">Id Order</th>
@@ -31,10 +31,10 @@
                     echo '<td>'.$order->getFinancialStatus().'</td>';
                     $fulfills = $order->getFulfillments();
                     if(count($fulfills) > 0){
-                        echo '<td>'.$order->getTrackingCompany().'"></td>';
-                        echo '<td>'.$order->getTrackingNumber().'"></td>';
-                        echo '<td>'.$order->getTrackingUrl().'"></td>';
-                        echo '<td>'.$order->getShipmentStatus().'"></td>';
+                        echo '<td>'.$fulfills[0]->getTrackingCompany().'"></td>';
+                        echo '<td>'.$fulfills[0]->getTrackingNumber().'"></td>';
+                        echo '<td>'.$fulfills[0]->getTrackingUrl().'"></td>';
+                        echo '<td>'.$fulfills[0]->getShipmentStatus().'"></td>';
 
                     }
                     else 
