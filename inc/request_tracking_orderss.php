@@ -36,7 +36,7 @@
                     // if($leftdate > 60)
                     //  continue;
                     $fulfills = $order->getFulfillments();
-                    if(count($fulfills) == 0){
+                    if(count($fulfills) == 0)
                     {
 
                         if($leftdate >= 5)
