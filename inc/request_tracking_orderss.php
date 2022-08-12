@@ -35,7 +35,8 @@
                     $leftdate=(int)$diff->days;
                     // if($leftdate > 60)
                     //  continue;
-                    if($order->getFulfillmentStatus() === null)
+                    $fulfills = $order->getFulfillments();
+                    if(count($fulfills) == 0){
                     {
 
                         if($leftdate >= 5)
@@ -53,7 +54,6 @@
                     echo '<td>'.$nameShip.'</td>';
                     echo '<td>'.$order->getFinancialStatus().'</td>';
                     echo '<td>'.$order->getCreatedAt()->format("H:i:s m-d-Y").'</td>';
-                    $fulfills = $order->getFulfillments();
                     if(count($fulfills) > 0){
                         echo '<td>'.$fulfills[0]->getTrackingCompany().'</td>';
                         echo '<td><a href="'.$fulfills[0]->getTrackingUrl().'" target="_blank">'.$fulfills[0]->getTrackingNumber().'</a></td>';
@@ -61,7 +61,7 @@
 
                     }
                     else 
-                        echo '<td colspan="3">'.$order->getFulfillmentStatus().'</td>';
+                        echo '<td colspan="3">Not Yet</td>';
                     echo '</tr>';
                 }
                 $orders = $pagination->next();
