@@ -140,7 +140,7 @@ if($func == 'saved'){
         $query = array("status" => "any");//
     }
     
-    $orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
+    $orders = $client->getOrderManager()->findAll();//.$orderID.".1"]);
     
 
     // //print_r($product);
