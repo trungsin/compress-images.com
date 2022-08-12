@@ -32,7 +32,7 @@
                     echo '<th>'.$order->getNumber().'</th>';
                     echo '<td>'.$nameShip.'</td>';
                     echo '<td>'.$order->getFinancialStatus().'</td>';
-                    echo '<td>'.$order->getCreatedAt().'</td>';
+                    echo '<td>'.date("H:i:s m-d-Y", $order->getCreatedAt()).'</td>';
                     $fulfills = $order->getFulfillments();
                     if(count($fulfills) > 0){
                         echo '<td>'.$fulfills[0]->getTrackingCompany().'</td>';
