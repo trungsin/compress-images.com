@@ -22,8 +22,8 @@
             </thead>
             <tbody>
          <?php
-           // $orders = $pagination->current();
-           //  while ($pagination->hasNext()) {
+           $orders = $pagination->current();
+            while ($pagination->hasNext()) {
                 foreach($orders as $order){
                     $nameShip = "not yet";
                     $now = new DateTime("now");
@@ -64,8 +64,8 @@
                         echo '<td colspan="3">Not Yet</td>';
                     echo '</tr>';
                 }
-            //     $orders = $pagination->next();
-            // }
+                $orders = $pagination->next();
+            }
          ?>
             </tbody>
           </table>

@@ -136,22 +136,22 @@ if($func == 'saved'){
     if($chanel != ""){
         $query = array("status" => "any","note"=>$chanel);    
     } else {
-        //$query = array("status" => "any",'created_at_max'=>date('Y-m-d'));//,'created_at_min'=>'2022-07-30','created_at_max'=>'2022-07-30');
-        $query = array("status" => "any");//
+        $query = array("status" => "any",'created_at_max'=>date('Y-m-d'));//,'created_at_min'=>'2022-07-30','created_at_max'=>'2022-07-30');
+        //$query = array("status" => "any");//
     }
     
     $orders = $client->getOrderManager()->findAll();//.$orderID.".1"]);
     
 
-    // //print_r($product);
-    // $pagination = $client->getOrderManager()->paginate([
-    //     // // filter your product
-    //      'limit' => 1000,
-    //     // 'created_at_min' => '2015-04-25T16:15:47-04:00'
-    // ]);
-    // // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
+    //print_r($product);
+    $pagination = $client->getOrderManager()->paginate([
+        // // filter your product
+         'limit' => 1000,
+        // 'created_at_min' => '2015-04-25T16:15:47-04:00'
+    ]);
+    // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
-    // $pagination->current(); //current page
+    $pagination->current(); //current page
     // //print_r($currentProducts);
     include("./inc/request_tracking_orderss.php");
 } else {
