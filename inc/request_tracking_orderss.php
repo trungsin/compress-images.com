@@ -22,7 +22,7 @@
             </thead>
             <tbody>
          <?php
-           $orders = $pagination->current();
+           //$orders = $pagination->current();
             while ($pagination->hasNext()) {
                 foreach($orders as $order){
                     $nameShip = "not yet";

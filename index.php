@@ -151,8 +151,8 @@ if($func == 'saved'){
     ]);
     // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
-    $pagination->current(); //current page
-    print_r($orders);
+    //$pagination->current(); //current page
+    //print_r($orders);
     include("./inc/request_tracking_orderss.php");
 } else {
      include("./inc/leftbar.php");
