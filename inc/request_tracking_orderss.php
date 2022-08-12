@@ -61,7 +61,7 @@
 
                     }
                     else 
-                        echo '<td colspan="3">Not Yet</td>';
+                        echo '<td colspan="3">'.$order->getFulfillmentStatus().'</td>';
                     echo '</tr>';
                 }
                 $orders = $pagination->next();
