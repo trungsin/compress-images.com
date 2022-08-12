@@ -14,6 +14,7 @@
                 <th scope="col" style="width: 300px;">Id Order</th>
                 <th scope="col">Name </th>
                 <th scope="col">Status</th>
+                <th scope="col">Create Date</th>
                 <th scope="col">Tracking Company</th>
                 <th scope="col">Tracking Number</th>
                 <th scope="col">Tracking url</th>
@@ -28,9 +29,10 @@
                     if($order->getBillingAddress() != null)
                         $nameShip = $order->getBillingAddress()->getName();
                     echo '<tr class="table-active">';
-                    echo '<th>'.$order->getName().'</th>';
+                    echo '<th>'.$order->getNumber().'</th>';
                     echo '<td>'.$nameShip.'</td>';
                     echo '<td>'.$order->getFinancialStatus().'</td>';
+                    echo '<td>'.$order->getCreatedAt().'</td>';
                     $fulfills = $order->getFulfillments();
                     if(count($fulfills) > 0){
                         echo '<td>'.$fulfills[0]->getTrackingCompany().'</td>';
@@ -42,7 +44,6 @@
                         echo '<td colspan="3">Not Yet</td>';
                     echo '</tr>';
                 }
-                echo ($i++)."----------<br>";
                 $orders = $pagination->next();
             }
          ?>
