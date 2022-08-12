@@ -49,7 +49,7 @@
 
                     if($order->getBillingAddress() != null)
                         $nameShip = $order->getBillingAddress()->getName();
-                    echo '<tr class="table-active">';
+                    echo '<tr class="table-active" style="'.$red.'">';
                     echo '<th>'.$order->getNumber().'</th>';
                     echo '<td>'.$nameShip.'</td>';
                     echo '<td>'.$order->getFinancialStatus().'</td>';
