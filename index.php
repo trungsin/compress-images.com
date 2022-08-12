@@ -122,6 +122,9 @@ if($func == 'saved'){
         
     }
 } elseif($func =="tracking"){
+    $chanel="";
+    if(isset($_GET['chanel'])){
+        $chanel = $_GET['chanel'];
     //$credential = new Slince\Shopify\PublicAppCredential('Access Token');
     // Or Private App
     $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], $_ENV['SHAREDSECRET']);
@@ -129,7 +132,12 @@ if($func == 'saved'){
     $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
         'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
     ]);
-    $query = array("status" => "any",);
+    if($chanel != ""){
+        $query = array("status" => "any","note"=>$chanel);    
+    } else {
+        $query = array("status" => "any",'created_at_min'=>'2022-07-30','created_at_max'=>'2022-07-30');
+    }
+    
     $orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
     
 
