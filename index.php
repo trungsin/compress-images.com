@@ -133,14 +133,14 @@ if($func == 'saved'){
     $client = new Slince\Shopify\Client($_ENV['NAMESHOP'], $credential, [
         'meta_cache_dir' => './tmp/log' // Metadata cache dir, required
     ]);
-    if($chanel != ""){
-        $query = array("status" => "any","note"=>$chanel);    
-    } else {
-        $query = array("status" => "any");//,'created_at_min'=>'2022-07-30','created_at_max'=>'2022-07-30');
-        //$query = array("status" => "any");//
-    }
-    
-    $orders = $client->getOrderManager()->findAll();//.$orderID.".1"]);
+    // if($chanel != ""){
+    //     $query = array("status" => "any","note"=>$chanel);    
+    // } else {
+    //     $query = array("status" => "any");//,'created_at_min'=>'2022-07-30','created_at_max'=>'2022-07-30');
+    //     //$query = array("status" => "any");//
+    // }
+    $query = array("status" => "any");
+    $orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
     
 
     //print_r($product);
