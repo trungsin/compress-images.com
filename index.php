@@ -136,7 +136,7 @@ if($func == 'saved'){
     if($chanel != ""){
         $query = array("status" => "any","note"=>$chanel);    
     } else {
-        $query = array("status" => "any",'created_at_max'=>date('Y-M-D',now()));//,'created_at_min'=>'2022-07-30','created_at_max'=>'2022-07-30');
+        $query = array("status" => "any",'created_at_max'=>date('Y-M-D'));//,'created_at_min'=>'2022-07-30','created_at_max'=>'2022-07-30');
     }
     
     $orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
