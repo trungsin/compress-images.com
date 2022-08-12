@@ -125,6 +125,7 @@ if($func == 'saved'){
     $chanel="";
     if(isset($_GET['chanel'])){
         $chanel = $_GET['chanel'];
+    }
     //$credential = new Slince\Shopify\PublicAppCredential('Access Token');
     // Or Private App
     $credential = new Slince\Shopify\PrivateAppCredential($_ENV['APIKEYSHOP'], $_ENV['PASSAPISHOP'], $_ENV['SHAREDSECRET']);
