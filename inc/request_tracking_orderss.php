@@ -22,10 +22,30 @@
             </thead>
             <tbody>
          <?php
-           // $orders = $pagination->current();
-           //  while ($pagination->hasNext()) {
+           $orders = $pagination->current();
+            while ($pagination->hasNext()) {
                 foreach($orders as $order){
                     $nameShip = "not yet";
+                    $now = new DateTime("now");
+                    //$create = new DateTime($order['created_at']);
+                    $diff = date_diff($order->getCreatedAt(),$now);
+                    $fulfillment_status = "fulfilled";
+                
+                    $red = "";
+                    $leftdate=(int)$diff->days;
+                    // if($leftdate > 60)
+                    //  continue;
+                    if($order->getFulfillmentStatus() === null)
+                    {
+
+                        if($leftdate >= 5)
+                            $red="background-color: red;";
+                        else
+                            continue;
+                        $fulfillment_status = "Unfulfilled";
+                        //$financial_status = ""
+                    } 
+
                     if($order->getBillingAddress() != null)
                         $nameShip = $order->getBillingAddress()->getName();
                     echo '<tr class="table-active">';
@@ -44,8 +64,8 @@
                         echo '<td colspan="3">Not Yet</td>';
                     echo '</tr>';
                 }
-            //     $orders = $pagination->next();
-            // }
+                $orders = $pagination->next();
+            }
          ?>
             </tbody>
           </table>
