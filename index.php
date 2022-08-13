@@ -141,7 +141,7 @@ if($func == 'saved'){
     // }
     $query = array("status" => "any");
     $orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
-    
+    echo count($orders);
 
     //print_r($product);
     $pagination = $client->getOrderManager()->paginate([
@@ -153,7 +153,7 @@ if($func == 'saved'){
     // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
     //$pagination->current(); //current page
-    print_r($pagination);
+    //print_r($pagination);
     include("./inc/request_tracking_orderss.php");
 } else {
      include("./inc/leftbar.php");
