@@ -147,13 +147,13 @@ if($func == 'saved'){
     $pagination = $client->getOrderManager()->paginate([
         // // filter your product
          'limit' => 50,
-         'page'=>1,
+         //'page'=>1,
         // 'created_at_min' => '2015-04-25T16:15:47-04:00'
     ]);
     // $pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
     //$pagination->current(); //current page
-    //print_r($orders);
+    print_r($$pagination);
     include("./inc/request_tracking_orderss.php");
 } else {
      include("./inc/leftbar.php");
