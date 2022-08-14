@@ -75,4 +75,4 @@
        </div>
     </div>
 </div>
-<?php echo $i:
+<?php echo $i; ?>
