@@ -23,7 +23,9 @@
             <tbody>
          <?php
            $orders = $pagination->current();
+           $i=0;
             while ($pagination->hasNext()) {
+                $i++;
                 foreach($orders as $order){
                     $nameShip = "not yet";
                     $now = new DateTime("now");
@@ -66,9 +68,11 @@
                 }
                 $orders = $pagination->next();
             }
+
          ?>
             </tbody>
           </table>
        </div>
     </div>
 </div>
+<?php echo $i:
