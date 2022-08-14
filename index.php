@@ -140,13 +140,13 @@ if($func == 'saved'){
     //     //$query = array("status" => "any");//
     // }
     $query = array("status" => "any");
-    $orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
+    //$orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
     echo count($orders);
 
     //print_r($product);
     $now = new DateTime();// empty argument returns the current date
     $interval = new DateInterval('P60D');//this objet represents a 7 days interval
-    $min = $now->sub($interval);
+    echo $min = $now->sub($interval);
 
     $pagination = $client->getOrderManager()->paginate([
         // // filter your product
