@@ -156,7 +156,7 @@ echo $min->format("Y-m-d");
     ]);
     //$pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
-    $pagination->current(); //current page
+    //$pagination->current(); //current page
     //print_r($pagination);
     include("./inc/request_tracking_orderss.php");
 } else {
