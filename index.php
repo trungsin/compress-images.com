@@ -146,8 +146,8 @@ if($func == 'saved'){
     //print_r($product);
     $now = new DateTime();// empty argument returns the current date
     $interval = new DateInterval('P60D');//this objet represents a 7 days interval
-    echo $min = $now->sub($interval);
-
+     $min = $now->sub($interval);
+echo $min->format("Y-m-d");
     $pagination = $client->getOrderManager()->paginate([
         // // filter your product
          'limit' => 100,
