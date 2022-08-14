@@ -152,7 +152,7 @@ echo $min->format("Y-m-d");
         // // filter your product
          'limit' => 100,
          //'page'=>1,
-         'created_at_min' => $min,
+         'created_at_min' => $min->format("Y-m-d"),
     ]);
     //$pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
