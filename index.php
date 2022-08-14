@@ -146,7 +146,7 @@ if($func == 'saved'){
     //print_r($product);
     $pagination = $client->getOrderManager()->paginate([
         // // filter your product
-         'limit' => 250,
+         'limit' => 100,
          //'page'=>1,
         // 'created_at_min' => '2015-04-25T16:15:47-04:00'
     ]);
