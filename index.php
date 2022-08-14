@@ -144,11 +144,15 @@ if($func == 'saved'){
     echo count($orders);
 
     //print_r($product);
+    $now = new DateTime();// empty argument returns the current date
+    $interval = new DateInterval('P60D');//this objet represents a 7 days interval
+    $min = $now->sub($interval);
+
     $pagination = $client->getOrderManager()->paginate([
         // // filter your product
          'limit' => 100,
          //'page'=>1,
-        // 'created_at_min' => '2015-04-25T16:15:47-04:00'
+         'created_at_min' => $min,
     ]);
     //$pagination is instance of `Slince\Shopify\Common\CursorBasedPagination`
 
