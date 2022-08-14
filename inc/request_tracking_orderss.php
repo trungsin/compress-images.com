@@ -25,8 +25,9 @@
            $orders = $pagination->current();
            $i=0;
             while ($pagination->hasNext()) {
-                $i++;
+                
                 foreach($orders as $order){
+                    $i++;
                     $nameShip = "not yet";
                     $now = new DateTime("now");
                     //$create = new DateTime($order['created_at']);
