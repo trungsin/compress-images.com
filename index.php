@@ -141,7 +141,7 @@ if($func == 'saved'){
     // }
     $query = array("status" => "any");
     //$orders = $client->getOrderManager()->findAll($query);//.$orderID.".1"]);
-    echo count($orders);
+    //echo count($orders);
 
     //print_r($product);
     $now = new DateTime();// empty argument returns the current date
